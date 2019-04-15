@@ -5,6 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 import PrivateRoute from './components/PrivateRoute';
 import Login from './components/Login/Login';
 import Private from './components/Private';
+import PayloadForm from './components/PayloadForm';
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <div className="container">
+          <PayloadForm />
           <Route
             path='/login'
             component={Login}
