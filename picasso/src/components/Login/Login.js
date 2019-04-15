@@ -30,7 +30,7 @@ class Login extends React.Component {
       ? this.props.login(this.state.creds)
           .then(() => {
             this.props.history.push('/private');
-          });
+          })
       : this.props.signup(this.state.creds)
           .then(() => {
             this.props.history.push('/private');
