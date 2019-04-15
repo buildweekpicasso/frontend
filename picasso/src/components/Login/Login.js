@@ -39,6 +39,8 @@ class Login extends React.Component {
   };
 
   render() {
+    console.log(this.props.location.pathname)
+
     return (
       <div className='Login'>
         <Form
@@ -70,9 +72,9 @@ class Login extends React.Component {
             type='submit'
           >
             {
-              this.props.loggingIn
-                ? 'Logging In...'
-                : 'Log In'
+              this.props.location.pathname === '/login'
+                ? 'Log In'
+                : 'Sign Up'
             }
           </Button>
         </Form>
