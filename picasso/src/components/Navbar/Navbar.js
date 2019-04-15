@@ -26,7 +26,7 @@ export default class Navbar extends React.Component {
   render() {
     return (
       <div>
-        <NavbarRS color="light" light expand="md">
+        <NavbarRS fixed="top" color="dark" dark expand="md">
           <NavbarBrand href="/">Picasso Painted It</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -36,6 +36,9 @@ export default class Navbar extends React.Component {
               </NavItem>
               <NavItem>
                 <NavLinkRS to="/login" tag={NavLink}>Login</NavLinkRS>
+              </NavItem>
+              <NavItem>
+                <NavLinkRS to="/signup" tag={NavLink}>Signup</NavLinkRS>
               </NavItem>
             </Nav>
           </Collapse>
