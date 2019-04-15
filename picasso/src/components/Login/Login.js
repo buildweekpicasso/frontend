@@ -1,6 +1,6 @@
-import React from './node_modules/react';
-import { connect } from './node_modules/react-redux';
-import { Form, FormGroup, Label, Input, Button } from './node_modules/reactstrap';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import './Login.scss';
 import { login } from '../../actions';
 
