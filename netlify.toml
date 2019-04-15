@@ -1,3 +1,7 @@
+[build]
+  base = "picasso/"
+  publish = "picasso/build/"
+  command = "yarn build"
 [[redirects]]
   from = "/*"
   to = "/index.html"
