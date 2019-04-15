@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import './Login.scss';
 import { login, signup } from '../../actions';
@@ -45,8 +46,9 @@ class Login extends React.Component {
   };
 
   render() {
-    return (
-      <div className='Login'>
+    return localStorage.getItem('token')
+      ?(<Redirect to='/private' />)
+      :(<div className='Login'>
         <Form
           onSubmit={this.handleSubmit}
         >
