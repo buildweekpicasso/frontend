@@ -24,12 +24,18 @@ class Login extends React.Component {
     });
   };
 
-  login = e => {
+  handleSubmit = e => {
     e.preventDefault();
-    this.props.login(this.state.creds)
-      .then(() => {
-        this.props.history.push('/');
-      });
+    {this.props.location.pathname === '/login'
+      ? this.props.login(this.state.creds)
+          .then(() => {
+            this.props.history.push('/private');
+          });
+      : this.props.signup(this.state.creds)
+          .then(() => {
+            this.props.history.push('/private');
+          });
+    }
     this.setState({
       creds: {
         username: '',
@@ -39,12 +45,10 @@ class Login extends React.Component {
   };
 
   render() {
-    console.log(this.props.location.pathname)
-
     return (
       <div className='Login'>
         <Form
-          onSubmit={this.login}
+          onSubmit={this.handleSubmit}
         >
           <FormGroup>
             <Label for='login-un'>Username</Label>
