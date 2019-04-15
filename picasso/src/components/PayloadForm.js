@@ -5,14 +5,19 @@ export default class PayloadForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imgUpload: null,
-      imgStyle: '',
+      formData: {
+        uploadImg: null,
+        styleImg: '',
+      }
     }
   }
 
-  onUploadChange = e => {
+  handleUploadChange = e => {
     this.setState({
-      imgUpload: e.target.files[0]
+      formData: {
+        ...this.state.formData,
+        uploadImg: e.target.files[0],
+      }
     });
   }
 
@@ -22,14 +27,14 @@ export default class PayloadForm extends React.Component {
         <h3>Choose an Image & Style</h3>
         <Form>
           <FormGroup>
-            <Label for="imgUpload">File Browser with Custom Label</Label>
+            <Label for="uploadImg">File Browser with Custom Label</Label>
             <CustomInput
               type="file"
               accept="image/*"
-              id="imgUpload"
-              name="imgUpload"
+              id="uploadImg"
+              name="uploadImg"
               label="Choose your image"
-              onChange={this.onUploadChange}
+              onChange={this.handleUploadChange}
             />
             <Button
               type='submit'
