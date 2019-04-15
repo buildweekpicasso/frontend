@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import './Login.scss';
-import { login } from '../../actions';
+import { login, signup } from '../../actions';
 
 class Login extends React.Component {
   constructor(props) {
@@ -24,12 +25,18 @@ class Login extends React.Component {
     });
   };
 
-  login = e => {
+  handleSubmit = e => {
     e.preventDefault();
-    this.props.login(this.state.creds)
-      .then(() => {
-        this.props.history.push('/');
-      });
+    console.log(this.props.location.pathname === '/login');
+    this.props.location.pathname === '/login'
+      ? this.props.login(this.state.creds)
+          .then(() => {
+            this.props.history.push('/private');
+          })
+      : this.props.signup(this.state.creds)
+          .then(() => {
+            this.props.history.push('/private');
+          });
     this.setState({
       creds: {
         username: '',
@@ -39,10 +46,11 @@ class Login extends React.Component {
   };
 
   render() {
-    return (
-      <div className='Login'>
+    return localStorage.getItem('token')
+      ?(<Redirect to='/private' />)
+      :(<div className='Login'>
         <Form
-          onSubmit={this.login}
+          onSubmit={this.handleSubmit}
         >
           <FormGroup>
             <Label for='login-un'>Username</Label>
@@ -70,9 +78,9 @@ class Login extends React.Component {
             type='submit'
           >
             {
-              this.props.loggingIn
-                ? 'Logging In...'
-                : 'Log In'
+              this.props.location.pathname === '/login'
+                ? 'Log In'
+                : 'Sign Up'
             }
           </Button>
         </Form>
@@ -81,11 +89,11 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = ({ loggingIn }) => ({
-  loggingIn,
+const mapStateToProps = ({ loggingIn, signingUp }) => ({
+  loggingIn, signingUp
 });
 
 export default connect(
   mapStateToProps,
-  { login }
+  { login, signup }
 )(Login);

@@ -7,7 +7,7 @@ import {
   Nav,
   NavItem,
   NavLink as NavLinkRS } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 export default class Navbar extends React.Component {
   constructor(props) {
@@ -27,7 +27,7 @@ export default class Navbar extends React.Component {
     return (
       <div>
         <NavbarRS fixed="top" color="dark" dark expand="md">
-          <NavbarBrand href="/">Picasso Painted It</NavbarBrand>
+          <NavbarBrand to="/" tag={Link}>Picasso Painted It</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -35,10 +35,13 @@ export default class Navbar extends React.Component {
                 <NavLinkRS to="/private" tag={NavLink}>Private</NavLinkRS>
               </NavItem>
               <NavItem>
-                <NavLinkRS to="/login" tag={NavLink}>Login</NavLinkRS>
+                <NavLinkRS to="/request" tag={NavLink}>Image Request</NavLinkRS>
               </NavItem>
               <NavItem>
-                <NavLinkRS to="/signup" tag={NavLink}>Signup</NavLinkRS>
+                <NavLinkRS to="/login" tag={NavLink}>Log In</NavLinkRS>
+              </NavItem>
+              <NavItem>
+                <NavLinkRS to="/signup" tag={NavLink}>Sign Up</NavLinkRS>
               </NavItem>
             </Nav>
           </Collapse>
