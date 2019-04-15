@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import './Login.scss';
-import { login } from '../../actions';
+import { login, signup } from '../../actions';
 
 class Login extends React.Component {
   constructor(props) {
@@ -83,11 +83,11 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = ({ loggingIn }) => ({
-  loggingIn,
+const mapStateToProps = ({ loggingIn, signingUp }) => ({
+  loggingIn, signingUp
 });
 
 export default connect(
   mapStateToProps,
-  { login }
+  { login, signup }
 )(Login);
