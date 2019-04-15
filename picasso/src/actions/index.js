@@ -33,7 +33,7 @@ export const signup = creds => dispatch => {
   return axios.post(`${baseURL}/auth/register`, creds)
     .then(res => {
       console.log(res);
-      localStorage.setItem('token', res.data.payload);
+      localStorage.setItem('token', res.data.token);
       dispatch({
         type: SIGNUP_SUCCESS,
         payload: res.data.token
