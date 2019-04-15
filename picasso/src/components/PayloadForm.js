@@ -18,24 +18,27 @@ export default class PayloadForm extends React.Component {
 
   render() {
     return (
-      <Form>
-        <FormGroup>
-          <Label for="imgUpload">File Browser with Custom Label</Label>
-          <CustomInput
-            type="file"
-            accept="image/*"
-            id="imgUpload"
-            name="imgUpload"
-            label="Choose your image"
-            onChange={this.onUploadChange}
-          />
-          <Button
-            type='submit'
-          >
-            Submit
-          </Button>
-        </FormGroup>
-      </Form>
+      <div className="PayloadForm">
+        <h3>Choose an Image & Style</h3>
+        <Form>
+          <FormGroup>
+            <Label for="imgUpload">File Browser with Custom Label</Label>
+            <CustomInput
+              type="file"
+              accept="image/*"
+              id="imgUpload"
+              name="imgUpload"
+              label="Choose your image"
+              onChange={this.onUploadChange}
+            />
+            <Button
+              type='submit'
+            >
+              Submit
+            </Button>
+          </FormGroup>
+        </Form>
+      </div>
     )
   }
 }

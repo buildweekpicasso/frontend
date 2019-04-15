@@ -13,7 +13,10 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <div className="container">
-          <PayloadForm />
+          <Route
+            path='/request'
+            component={PayloadForm}
+          />
           <Route
             path='/login'
             component={Login}

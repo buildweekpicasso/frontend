@@ -35,6 +35,9 @@ export default class Navbar extends React.Component {
                 <NavLinkRS to="/private" tag={NavLink}>Private</NavLinkRS>
               </NavItem>
               <NavItem>
+                <NavLinkRS to="/request" tag={NavLink}>Image Request</NavLinkRS>
+              </NavItem>
+              <NavItem>
                 <NavLinkRS to="/login" tag={NavLink}>Log In</NavLinkRS>
               </NavItem>
               <NavItem>
