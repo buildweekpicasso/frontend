@@ -26,7 +26,8 @@ class Login extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    {this.props.location.pathname === '/login'
+    console.log(this.props.location.pathname === '/login');
+    this.props.location.pathname === '/login'
       ? this.props.login(this.state.creds)
           .then(() => {
             this.props.history.push('/private');
@@ -35,7 +36,6 @@ class Login extends React.Component {
           .then(() => {
             this.props.history.push('/private');
           });
-    }
     this.setState({
       creds: {
         username: '',

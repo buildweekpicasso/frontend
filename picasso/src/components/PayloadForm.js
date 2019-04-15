@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FormGroup, Label, CustomInput } from 'reactstrap';
+import { Form, FormGroup, Label, CustomInput, Button } from 'reactstrap';
 
 export default class PayloadForm extends React.Component {
   constructor(props) {
@@ -29,6 +29,11 @@ export default class PayloadForm extends React.Component {
             label="Choose your image"
             onChange={this.onUploadChange}
           />
+          <Button
+            type='submit'
+          >
+            Submit
+          </Button>
         </FormGroup>
       </Form>
     )
