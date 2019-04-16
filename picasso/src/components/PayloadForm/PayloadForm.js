@@ -38,22 +38,25 @@ class PayloadForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    let formData = new FormData();
-    formData.append('content-image', this.state.formData.contentImg)
-    formData.append('styleID', this.state.formData.styleID);
-    this.props.submitPayload(formData)
-      .then(() => {
-        window.location.assign(this.props.processedURL);
+    if(this.state.formData.contentImg !== null || this.state.formData.styleID !== null) {
+      let formData = new FormData();
+      formData.append('content-image', this.state.formData.contentImg)
+      formData.append('styleID', this.state.formData.styleID);
+      this.props.submitPayload(formData)
+        .then(() => {
+          window.location.assign(this.props.processedURL);
+        })
+      this.setState({
+        formData: {
+          contentImg: null,
+          styleID: null,
+        }
       })
-    this.setState({
-      formData: {
-        contentImg: null,
-        styleID: null,
-      }
-    })
+    }
   }
 
   render() {
+    const noSubmit = this.state.formData.contentImg === null || this.state.formData.styleID === null;
     return (
       <div className="PayloadForm">
         <Form onSubmit={this.handleSubmit}>
@@ -61,6 +64,7 @@ class PayloadForm extends React.Component {
             <h3>Choose an Image & Style</h3>
             <Button
               type='submit'
+              disabled={noSubmit}
             >
               Submit
             </Button>
