@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, FormGroup, Label, CustomInput, Button, CardColumns, Card, CardImg } from 'reactstrap';
-import { fetchStyleImages } from '../actions';
+import { Form, FormGroup, Label, CustomInput, Button, CardColumns, Card, CardImg, CardBody } from 'reactstrap';
+import { fetchStyleImages, testURL } from '../../actions';
 
 class PayloadForm extends React.Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class PayloadForm extends React.Component {
     this.state = {
       formData: {
         'upload-image': null,
-        'style-image': '',
+        'style-image': null,
       }
     }
   }
@@ -59,20 +59,36 @@ class PayloadForm extends React.Component {
               Submit
             </Button>
           </FormGroup>
+          <FormGroup tag='fieldset'>
+            <legend>Select a Style</legend>
+            <CardColumns>
+              {
+                this.props.styleImages.map(img =>
+                  <Card
+                    key={img.id}
+                    onClick={this.handleStyleSelect}
+                    className='rounded-lg'
+                  >
+                    <CardImg
+                      top
+                      id={img.id}
+                      width='100%'
+                      src={`${testURL}/styles/${img.thumbUrl}`}
+                      alt={img.title}
+                    />
+                    <CardBody>
+                      <p>
+                        <strong>Title:</strong> {img.title}
+                      </p>
+                      <p>
+                        <strong>Year(s):</strong> {img.year}
+                      </p>
+                    </CardBody>
+                  </Card>)
+              }
+            </CardColumns>
+          </FormGroup>
         </Form>
-        <CardColumns>
-          {
-            this.props.styleImages.map(img =>
-              <Card onClick={this.handleStyleSelect} key={img.styleId}>
-                <CardImg
-                  id={img.styleId}
-                  width='100%'
-                  src={img.imageUrl}
-                  alt=''
-                />
-              </Card>)
-          }
-        </CardColumns>
       </div>
     )
   }

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const baseURL = 'https://bw-picasso.herokuapp.com';
-const testURL = 'https://quiet-shore-93010.herokuapp.com';
+export const baseURL = 'https://bw-picasso.herokuapp.com';
+export const testURL = 'https://quiet-shore-93010.herokuapp.com';
 
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
