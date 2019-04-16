@@ -27,6 +27,15 @@ class PayloadForm extends React.Component {
     });
   }
 
+  handleStyleSelect = e => {
+    this.setState({
+      formData: {
+        ...this.state.formData,
+        'style-image': e.target.id,
+      }
+    })
+  }
+
   render() {
     return (
       <div className="PayloadForm">
@@ -54,7 +63,7 @@ class PayloadForm extends React.Component {
         <CardColumns>
           {
             this.props.styleImages.map(img =>
-              <Card key={img.styleId}>
+              <Card onClick={this.handleStyleSelect} key={img.styleId}>
                 <CardImg
                   id={img.styleId}
                   width='100%'
