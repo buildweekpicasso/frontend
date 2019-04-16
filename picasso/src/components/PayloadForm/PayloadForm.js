@@ -15,7 +15,8 @@ class PayloadForm extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchStyleImages();
+    !this.props.styleImages.length
+      && this.props.fetchStyleImages();
   }
 
   handleUploadChange = e => {
@@ -57,6 +58,7 @@ class PayloadForm extends React.Component {
 
   render() {
     const noSubmit = this.state.formData.contentImg === null || this.state.formData.styleID === null;
+
     return (
       <div className="PayloadForm">
         <Form onSubmit={this.handleSubmit}>
