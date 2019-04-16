@@ -5,12 +5,16 @@ import {
   SIGNUP_START,
   SIGNUP_SUCCESS,
   SIGNUP_FAILURE,
+  FETCH_STYLES_START,
+  FETCH_STYLES_SUCCESS,
+  FETCH_STYLES_FAILURE,
 } from '../actions';
 
 const initialState = {
   error: '',
   loggingIn: false,
   signingUp: false,
+  fetchingStyles: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -50,6 +54,25 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
         signingUp: false,
+      }
+      case FETCH_STYLES_START:
+      return {
+        ...state,
+        error: '',
+        fetchingStyles: true,
+      }
+    case FETCH_STYLES_SUCCESS:
+      return {
+        ...state,
+        error: '',
+        fetchingStyles: false,
+        styleImages: action.payload,
+      }
+    case FETCH_STYLES_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        fetchingStyles: false,
       }
     default:
       return state;
