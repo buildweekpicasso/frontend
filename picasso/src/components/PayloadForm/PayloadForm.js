@@ -8,7 +8,7 @@ class PayloadForm extends React.Component {
     super(props);
     this.state = {
       formData: {
-        'upload-image': null,
+        uploadImg: null,
         styleImg: null,
       }
     }
@@ -19,16 +19,16 @@ class PayloadForm extends React.Component {
   }
 
   handleUploadChange = e => {
+    console.log(e.target.files[0])
     this.setState({
       formData: {
         ...this.state.formData,
-        'upload-image': e.target.files[0],
+        uploadImg: e.target.files[0],
       }
     });
   }
 
   handleStyleSelect = e => {
-    console.log(e.target.value);
     this.setState({
       formData: {
         ...this.state.formData,
@@ -63,13 +63,13 @@ class PayloadForm extends React.Component {
           <FormGroup check>
             <legend>Select a Style</legend>
             <CardColumns>
-              {
-                this.props.styleImages.map(img => {
-                  console.log(`${img.id}`, this.state.formData.styleImg)
-                  return (<Card
+              { // move this to StyleImages.js ASAP
+                this.props.styleImages.map(img => 
+                  <Card
                     key={img.id}
                     className='rounded-lg'
                   >
+                      <Label width='100%' check>
                     <CardImg
                       top
                       id={img.id}
@@ -77,7 +77,6 @@ class PayloadForm extends React.Component {
                       src={`${testURL}/styles/${img.thumbUrl}`}
                       alt={img.title}
                     />
-                    <Label check>
                       <CardBody>
                         <p>
                           <strong>Title:</strong> {img.title}
@@ -96,7 +95,7 @@ class PayloadForm extends React.Component {
                         />
                       </CardBody>
                     </Label>
-                  </Card>)}
+                  </Card>
                   )
               }
             </CardColumns>
