@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, FormGroup, Label, CustomInput, Button } from 'reactstrap';
+import { Form, FormGroup, Label, CustomInput, Button, CardColumns, Card, CardImg } from 'reactstrap';
 import { fetchStyleImages } from '../actions';
 
 class PayloadForm extends React.Component {
@@ -51,17 +51,19 @@ class PayloadForm extends React.Component {
             </Button>
           </FormGroup>
         </Form>
-        <div className='style-select'>
+        <CardColumns>
           {
             this.props.styleImages.map(img =>
-              <img
-                key={img.styleId}
-                src={img.imageUrl}
-                alt=''
-                style={{width: '250px'}}
-              />)
+              <Card key={img.styleId}>
+                <CardImg
+                  id={img.styleId}
+                  width='100%'
+                  src={img.imageUrl}
+                  alt=''
+                />
+              </Card>)
           }
-        </div>
+        </CardColumns>
       </div>
     )
   }
