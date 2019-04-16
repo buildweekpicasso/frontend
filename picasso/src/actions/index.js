@@ -74,4 +74,20 @@ export const fetchStyleImages = () => dispatch => {
 export const SUBMIT_PAYLOAD_START = 'SUBMIT_PAYLOAD_START';
 export const SUBMIT_PAYLOAD_SUCCESS = 'SUBMIT_PAYLOAD_SUCCESS';
 export const SUBMIT_PAYLOAD_FAILURE = 'SUBMIT_PAYLOAD_FAILURE';
-export const submitPayload = formData => {}
+export const submitPayload = formData => dispatch => {
+  dispatch({ type: SUBMIT_PAYLOAD_START });
+  return axios.post(`${baseURL}/images/uploadprocess/`, formData)
+    .then(res => {
+      dispatch({
+        type: SUBMIT_PAYLOAD_SUCCESS,
+        payload: res.data
+      })
+    })
+    .catch(err => {
+      console.log(err.response);
+      dispatch({
+        type: SUBMIT_PAYLOAD_FAILURE,
+        payload: err.response,
+      })
+    });
+}

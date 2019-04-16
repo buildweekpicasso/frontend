@@ -42,10 +42,7 @@ class PayloadForm extends React.Component {
     formData
       .append('content-image', this.state.formData.contentImg)
       .append('styleID', this.state.formData.styleID);
-    this.props.submitPayload(formData)
-        .then(() => {
-          // this.props.history.push('/');
-        });
+    this.props.submitPayload(formData);
     this.setState({
       formData: {
         contentImg: null,
@@ -122,8 +119,8 @@ class PayloadForm extends React.Component {
   }
 }
 
-const mapStateToProps = ({ fetchingStyles, styleImages }) => ({
-  fetchingStyles, styleImages
+const mapStateToProps = ({ fetchingStyles, styleImages, submittingPayload }) => ({
+  fetchingStyles, styleImages, submittingPayload
 });
 
 export default connect(

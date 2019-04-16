@@ -8,6 +8,9 @@ import {
   FETCH_STYLES_START,
   FETCH_STYLES_SUCCESS,
   FETCH_STYLES_FAILURE,
+  SUBMIT_PAYLOAD_START,
+  SUBMIT_PAYLOAD_SUCCESS,
+  SUBMIT_PAYLOAD_FAILURE,
 } from '../actions';
 
 const initialState = {
@@ -16,6 +19,8 @@ const initialState = {
   signingUp: false,
   fetchingStyles: false,
   styleImages: [],
+  submittingPayload: false,
+  processedImg: null,
 }
 
 const reducer = (state = initialState, action) => {
@@ -74,6 +79,25 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
         fetchingStyles: false,
+      }
+    case SUBMIT_PAYLOAD_START:
+      return {
+        ...state,
+        error: '',
+        submittingPayload: true,
+      }
+    case SUBMIT_PAYLOAD_SUCCESS:
+      return {
+        ...state,
+        error: '',
+        submittingPayload: false,
+        processedImg: action.payload,
+      }
+    case SUBMIT_PAYLOAD_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        submittingPayload: false,
       }
     default:
       return state;
