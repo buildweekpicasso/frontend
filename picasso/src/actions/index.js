@@ -74,4 +74,4 @@ export const fetchStyleImages = () => dispatch => {
 export const SUBMIT_PAYLOAD_START = 'SUBMIT_PAYLOAD_START';
 export const SUBMIT_PAYLOAD_SUCCESS = 'SUBMIT_PAYLOAD_SUCCESS';
 export const SUBMIT_PAYLOAD_FAILURE = 'SUBMIT_PAYLOAD_FAILURE';
-export const submitPayload = () => {}
+export const submitPayload = formData => {}

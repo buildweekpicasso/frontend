@@ -57,8 +57,15 @@ class PayloadForm extends React.Component {
   render() {
     return (
       <div className="PayloadForm">
-        <h3>Choose an Image & Style</h3>
         <Form onSubmit={this.handleSubmit}>
+          <FormGroup className="d-sm-flex justify-content-between">
+            <h3>Choose an Image & Style</h3>
+            <Button
+              type='submit'
+            >
+              Submit
+            </Button>
+          </FormGroup>
           <FormGroup>
             <Label for="upload-image">Pick an Image to Transform</Label>
             <CustomInput
@@ -69,13 +76,6 @@ class PayloadForm extends React.Component {
               label="Choose your image"
               onChange={this.handleUploadChange}
             />
-          </FormGroup>
-          <FormGroup>
-            <Button
-              type='submit'
-            >
-              Submit
-            </Button>
           </FormGroup>
           <FormGroup check>
             <legend>Select a Style</legend>
