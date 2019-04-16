@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, FormGroup, Label, CustomInput, Button, CardColumns, Card, CardImg, CardBody } from 'reactstrap';
+import { Form, FormGroup, Label, CustomInput, Button, CardColumns } from 'reactstrap';
 import { fetchStyleImages, testURL, submitPayload } from '../../actions';
+import StyleImages from './StyleImages';
 
 class PayloadForm extends React.Component {
   constructor(props) {
@@ -92,40 +93,12 @@ class PayloadForm extends React.Component {
               }
             </legend>
             <CardColumns>
-              { // move this to StyleImages.js ASAP
-                this.props.styleImages.map(img => 
-                  <Card
-                    key={img.id}
-                    className='rounded-lg'
-                  >
-                    <Label style={{width: '100%'}} check>
-                      <CardImg
-                        top
-                        id={img.id}
-                        width='100%'
-                        src={`${testURL}/styles/${img.thumbUrl}`}
-                        alt={img.title}
-                      />
-                      <CardBody>
-                        <p>
-                          <strong>Title:</strong> {img.title}
-                        </p>
-                        <p>
-                          <strong>Year(s):</strong> {img.year}
-                        </p>
-                        <CustomInput
-                          type="radio"
-                          checked={this.state.formData.styleID === `${img.id}`}
-                          onChange={this.handleStyleSelect}
-                          id={img.id}
-                          value={img.id}
-                          name="style-select"
-                          label="Select this style"
-                        />
-                      </CardBody>
-                    </Label>
-                  </Card>)
-              }
+              <StyleImages
+                activeStyle={this.state.formData.styleID}
+                styleImages={this.props.styleImages}
+                baseURL={testURL}
+                handleStyleSelect={this.handleStyleSelect}
+              />
             </CardColumns>
           </FormGroup>
         </Form>
