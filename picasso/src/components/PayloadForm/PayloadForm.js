@@ -64,7 +64,10 @@ class PayloadForm extends React.Component {
       <div className="PayloadForm">
         <Form onSubmit={this.handleSubmit}>
           <FormGroup className="d-sm-flex justify-content-between">
-            <h3>Choose an Image & Style</h3>
+            <h3>
+              <span className="spanIB">Choose an Image</span>{` `}
+              <span className="spanIB">and Style</span>
+            </h3>
             <Button
               type='submit'
               disabled={noSubmit}

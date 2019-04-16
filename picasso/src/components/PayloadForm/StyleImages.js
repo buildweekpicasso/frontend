@@ -7,7 +7,7 @@ export default props => {
         key={img.id}
         className='rounded-lg'
       >
-        <Label style={{width: '100%'}} check>
+        <Label className='StyleImage' style={{width: '100%'}} check>
           <CardImg
             top
             id={img.id}

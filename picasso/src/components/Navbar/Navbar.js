@@ -22,8 +22,13 @@ export default class Navbar extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
-  
+
+  logOut = () => {
+    localStorage.removeItem('token');
+  }
+
   render() {
+    const haveToken = localStorage.getItem('token');
     return (
       <div>
         <NavbarRS fixed="top" color="dark" dark expand="md">
@@ -31,7 +36,7 @@ export default class Navbar extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-            {localStorage.getItem('token')
+            {haveToken
                 && (
                   <NavItem>
                     <NavLinkRS to="/private" tag={NavLink}>Private</NavLinkRS>
@@ -39,10 +44,10 @@ export default class Navbar extends React.Component {
                 )
               }
               <NavItem>
-                <NavLinkRS to="/request" tag={NavLink}>Image Request</NavLinkRS>
+                <NavLinkRS exact to="/" tag={NavLink}>Image Request</NavLinkRS>
               </NavItem>
-              {!localStorage.getItem('token')
-                && (
+              {!haveToken
+                ? (
                   <>
                   <NavItem>
                     <NavLinkRS to="/login" tag={NavLink}>Log In</NavLinkRS>
@@ -50,8 +55,16 @@ export default class Navbar extends React.Component {
                   <NavItem>
                     <NavLinkRS to="/signup" tag={NavLink}>Sign Up</NavLinkRS>
                   </NavItem>
-                  </>
-                )
+                  </>)
+                : (<NavItem>
+                    <NavLinkRS
+                      to="/logout"
+                      tag={Link}
+                      onClick={this.logOut}
+                    >
+                      Log Out
+                    </NavLinkRS>
+                  </NavItem>)
               }
             </Nav>
           </Collapse>
