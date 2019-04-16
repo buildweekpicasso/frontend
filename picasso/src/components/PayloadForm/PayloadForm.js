@@ -69,14 +69,14 @@ class PayloadForm extends React.Component {
                     key={img.id}
                     className='rounded-lg'
                   >
-                      <Label width='100%' check>
-                    <CardImg
-                      top
-                      id={img.id}
-                      width='100%'
-                      src={`${testURL}/styles/${img.thumbUrl}`}
-                      alt={img.title}
-                    />
+                    <Label style={{width: '100%'}} check>
+                      <CardImg
+                        top
+                        id={img.id}
+                        width='100%'
+                        src={`${testURL}/styles/${img.thumbUrl}`}
+                        alt={img.title}
+                      />
                       <CardBody>
                         <p>
                           <strong>Title:</strong> {img.title}
