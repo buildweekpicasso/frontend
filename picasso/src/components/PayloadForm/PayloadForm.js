@@ -9,7 +9,7 @@ class PayloadForm extends React.Component {
     this.state = {
       formData: {
         'upload-image': null,
-        'style-image': null,
+        styleImg: null,
       }
     }
   }
@@ -28,10 +28,11 @@ class PayloadForm extends React.Component {
   }
 
   handleStyleSelect = e => {
+    console.log(e.target.value);
     this.setState({
       formData: {
         ...this.state.formData,
-        'style-image': e.target.id,
+        styleImg: e.target.value,
       }
     })
   }
@@ -59,14 +60,14 @@ class PayloadForm extends React.Component {
               Submit
             </Button>
           </FormGroup>
-          <FormGroup tag='fieldset'>
+          <FormGroup check>
             <legend>Select a Style</legend>
             <CardColumns>
               {
-                this.props.styleImages.map(img =>
-                  <Card
+                this.props.styleImages.map(img => {
+                  console.log(`${img.id}`, this.state.formData.styleImg)
+                  return (<Card
                     key={img.id}
-                    onClick={this.handleStyleSelect}
                     className='rounded-lg'
                   >
                     <CardImg
@@ -76,15 +77,27 @@ class PayloadForm extends React.Component {
                       src={`${testURL}/styles/${img.thumbUrl}`}
                       alt={img.title}
                     />
-                    <CardBody>
-                      <p>
-                        <strong>Title:</strong> {img.title}
-                      </p>
-                      <p>
-                        <strong>Year(s):</strong> {img.year}
-                      </p>
-                    </CardBody>
-                  </Card>)
+                    <Label check>
+                      <CardBody>
+                        <p>
+                          <strong>Title:</strong> {img.title}
+                        </p>
+                        <p>
+                          <strong>Year(s):</strong> {img.year}
+                        </p>
+                        <CustomInput
+                          type="radio"
+                          checked={this.state.formData.styleImg === `${img.id}`}
+                          onChange={this.handleStyleSelect}
+                          id={img.id}
+                          value={img.id}
+                          name="style-select"
+                          label="Select this style"
+                        />
+                      </CardBody>
+                    </Label>
+                  </Card>)}
+                  )
               }
             </CardColumns>
           </FormGroup>
