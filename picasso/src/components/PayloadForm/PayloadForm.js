@@ -79,7 +79,12 @@ class PayloadForm extends React.Component {
             />
           </FormGroup>
           <FormGroup check>
-            <legend>Select a Style</legend>
+            <legend>
+              {this.state.formData.styleID === null
+                ? 'Select a Style'
+                : `Currently Selected: "${this.props.styleImages.find(img => `${img.id}` === this.state.formData.styleID).title}"`
+              }
+            </legend>
             <CardColumns>
               { // move this to StyleImages.js ASAP
                 this.props.styleImages.map(img => 
