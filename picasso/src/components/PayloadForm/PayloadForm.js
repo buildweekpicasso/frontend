@@ -39,10 +39,12 @@ class PayloadForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     let formData = new FormData();
-    formData
-      .append('content-image', this.state.formData.contentImg)
-      .append('styleID', this.state.formData.styleID);
-    this.props.submitPayload(formData);
+    formData.append('content-image', this.state.formData.contentImg)
+    formData.append('styleID', this.state.formData.styleID);
+    this.props.submitPayload(formData)
+      .then(() => {
+        window.location.assign(this.props.processedURL);
+      })
     this.setState({
       formData: {
         contentImg: null,
@@ -70,7 +72,9 @@ class PayloadForm extends React.Component {
               accept="image/*"
               id="upload-image"
               name="upload-image"
-              label="Choose your image"
+              label={this.state.formData.contentImg
+                ? this.state.formData.contentImg.name
+                : "Choose your image"}
               onChange={this.handleUploadChange}
             />
           </FormGroup>
@@ -119,8 +123,8 @@ class PayloadForm extends React.Component {
   }
 }
 
-const mapStateToProps = ({ fetchingStyles, styleImages, submittingPayload }) => ({
-  fetchingStyles, styleImages, submittingPayload
+const mapStateToProps = ({ fetchingStyles, styleImages, submittingPayload, processedURL }) => ({
+  fetchingStyles, styleImages, submittingPayload, processedURL
 });
 
 export default connect(

@@ -80,7 +80,7 @@ export const submitPayload = formData => dispatch => {
     .then(res => {
       dispatch({
         type: SUBMIT_PAYLOAD_SUCCESS,
-        payload: res.data
+        payload: res.data.output_url,
       })
     })
     .catch(err => {
