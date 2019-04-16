@@ -31,18 +31,28 @@ export default class Navbar extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLinkRS to="/private" tag={NavLink}>Private</NavLinkRS>
-              </NavItem>
+            {localStorage.getItem('token')
+                && (
+                  <NavItem>
+                    <NavLinkRS to="/private" tag={NavLink}>Private</NavLinkRS>
+                  </NavItem>
+                )
+              }
               <NavItem>
                 <NavLinkRS to="/request" tag={NavLink}>Image Request</NavLinkRS>
               </NavItem>
-              <NavItem>
-                <NavLinkRS to="/login" tag={NavLink}>Log In</NavLinkRS>
-              </NavItem>
-              <NavItem>
-                <NavLinkRS to="/signup" tag={NavLink}>Sign Up</NavLinkRS>
-              </NavItem>
+              {!localStorage.getItem('token')
+                && (
+                  <>
+                  <NavItem>
+                    <NavLinkRS to="/login" tag={NavLink}>Log In</NavLinkRS>
+                  </NavItem>
+                  <NavItem>
+                    <NavLinkRS to="/signup" tag={NavLink}>Sign Up</NavLinkRS>
+                  </NavItem>
+                  </>
+                )
+              }
             </Nav>
           </Collapse>
         </NavbarRS>

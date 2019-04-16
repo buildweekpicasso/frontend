@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Form, FormGroup, Label, CustomInput, Button, CardColumns, Card, CardImg, CardBody } from 'reactstrap';
-import { fetchStyleImages, testURL } from '../../actions';
+import { fetchStyleImages, testURL, submitPayload } from '../../actions';
 
 class PayloadForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       formData: {
-        uploadImg: null,
-        styleImg: null,
+        contentImg: null,
+        styleID: null,
       }
     }
   }
@@ -19,11 +19,10 @@ class PayloadForm extends React.Component {
   }
 
   handleUploadChange = e => {
-    console.log(e.target.files[0])
     this.setState({
       formData: {
         ...this.state.formData,
-        uploadImg: e.target.files[0],
+        contentImg: e.target.files[0],
       }
     });
   }
@@ -32,7 +31,25 @@ class PayloadForm extends React.Component {
     this.setState({
       formData: {
         ...this.state.formData,
-        styleImg: e.target.value,
+        styleID: e.target.value,
+      }
+    })
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    let formData = new FormData();
+    formData
+      .append('content-image', this.state.formData.contentImg)
+      .append('styleID', this.state.formData.styleID);
+    this.props.submitPayload(formData)
+        .then(() => {
+          // this.props.history.push('/');
+        });
+    this.setState({
+      formData: {
+        contentImg: null,
+        styleID: null,
       }
     })
   }
@@ -41,7 +58,7 @@ class PayloadForm extends React.Component {
     return (
       <div className="PayloadForm">
         <h3>Choose an Image & Style</h3>
-        <Form>
+        <Form onSubmit={this.handleSubmit}>
           <FormGroup>
             <Label for="upload-image">Pick an Image to Transform</Label>
             <CustomInput
@@ -86,7 +103,7 @@ class PayloadForm extends React.Component {
                         </p>
                         <CustomInput
                           type="radio"
-                          checked={this.state.formData.styleImg === `${img.id}`}
+                          checked={this.state.formData.styleID === `${img.id}`}
                           onChange={this.handleStyleSelect}
                           id={img.id}
                           value={img.id}
@@ -95,8 +112,7 @@ class PayloadForm extends React.Component {
                         />
                       </CardBody>
                     </Label>
-                  </Card>
-                  )
+                  </Card>)
               }
             </CardColumns>
           </FormGroup>
@@ -112,5 +128,5 @@ const mapStateToProps = ({ fetchingStyles, styleImages }) => ({
 
 export default connect(
   mapStateToProps,
-  { fetchStyleImages }
+  { fetchStyleImages, submitPayload }
 )(PayloadForm);
