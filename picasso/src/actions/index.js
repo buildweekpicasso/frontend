@@ -53,6 +53,7 @@ export const FETCH_STYLES_START = 'FETCH_STYLES_START';
 export const FETCH_STYLES_SUCCESS = 'FETCH_STYLES_SUCCESS';
 export const FETCH_STYLES_FAILURE = 'FETCH_STYLES_FAILURE';
 export const fetchStyleImages = () => dispatch => {
+  console.log('Running')
   dispatch({ type: FETCH_STYLES_START });
   return axios.get(`${testURL}/images/styles/`)
     .then(res => {

@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Form, FormGroup, Label, CustomInput, Button } from 'reactstrap';
+import { fetchStyleImages } from '../actions';
 
-export default class PayloadForm extends React.Component {
+class PayloadForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,6 +12,10 @@ export default class PayloadForm extends React.Component {
         'style-image': '',
       }
     }
+  }
+
+  componentDidMount() {
+    this.props.fetchStyleImages();
   }
 
   handleUploadChange = e => {
@@ -27,7 +33,7 @@ export default class PayloadForm extends React.Component {
         <h3>Choose an Image & Style</h3>
         <Form>
           <FormGroup>
-            <Label for="upload-image">File Browser with Custom Label</Label>
+            <Label for="upload-image">Pick an Image to Transform</Label>
             <CustomInput
               type="file"
               accept="image/*"
@@ -36,6 +42,8 @@ export default class PayloadForm extends React.Component {
               label="Choose your image"
               onChange={this.handleUploadChange}
             />
+          </FormGroup>
+          <FormGroup>
             <Button
               type='submit'
             >
@@ -43,7 +51,27 @@ export default class PayloadForm extends React.Component {
             </Button>
           </FormGroup>
         </Form>
+        <div className='style-select'>
+          {
+            this.props.styleImages.map(img =>
+              <img
+                key={img.styleId}
+                src={img.imageUrl}
+                alt=''
+                style={{width: '250px'}}
+              />)
+          }
+        </div>
       </div>
     )
   }
 }
+
+const mapStateToProps = ({ fetchingStyles, styleImages }) => ({
+  fetchingStyles, styleImages
+});
+
+export default connect(
+  mapStateToProps,
+  { fetchStyleImages }
+)(PayloadForm);

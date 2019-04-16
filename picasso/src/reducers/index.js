@@ -15,6 +15,7 @@ const initialState = {
   loggingIn: false,
   signingUp: false,
   fetchingStyles: false,
+  styleImages: [],
 }
 
 const reducer = (state = initialState, action) => {
