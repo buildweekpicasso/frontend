@@ -64,6 +64,11 @@ class PayloadForm extends React.Component {
           styleID: null,
         },
         previewImg: null,
+        resultImages: {
+          output_url: null,
+          content_url: null,
+          style_url: null,
+        },
       })
     }
   }
@@ -74,7 +79,9 @@ class PayloadForm extends React.Component {
     return (
       <div className="PayloadForm">
         <ResultImages
-          outputURL={`${baseURL}/${this.props.resultImages.file}`}
+          outputURL={this.props.resultImages.output_url}
+          contentURL={this.props.resultImages.content_url}
+          styleURL={this.props.resultImages.style_url}
         />
         {/* {this.props.resultImages.file !== null
           && <ResultImages
@@ -106,7 +113,7 @@ class PayloadForm extends React.Component {
                 color='primary'
                 active={this.state.method === 'method1'}
               >
-                Faster
+                Faster (on site)
               </Button>
               <Button
                 id='method2'
@@ -116,7 +123,7 @@ class PayloadForm extends React.Component {
                 active={this.state.method === 'method2'}
                 title='You must be logged in to select this option'
               >
-                Slower
+                Higher Quality (email)
               </Button>
             </ButtonGroup>
           </FormGroup>

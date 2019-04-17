@@ -21,7 +21,9 @@ const initialState = {
   styleImages: [],
   submittingPayload: false,
   resultImages: {
-    file: null,
+    output_url: null,
+    content_url: null,
+    style_url: null,
   },
 }
 

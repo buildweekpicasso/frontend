@@ -20,28 +20,35 @@ export default props => {
       </Row>
       <Row>
         <Col>
-          <img
-            src={props.outputURL}
-            alt=""
-          />
+          <a href={props.outputURL} target="_blank" rel="noopener noreferrer">
+            <img
+              src={props.outputURL}
+              alt=""
+              style={{width: '100%'}}
+            />
+          </a>
         </Col>
       </Row>
       <Row>
         <Col sm="6">
           <h4>Content Image</h4>
-          <img
-            src={props.outputURL}
-            alt="Content"
-            style={{filter: 'hue-rotate(90deg)'}}
-          />
+          <a href={props.contentURL} target="_blank" rel="noopener noreferrer">
+            <img
+              src={props.contentURL}
+              alt="Content"
+              style={{width: '100%'}}
+            />
+          </a>
         </Col>
         <Col sm="6">
           <h4>Style Image</h4>
-          <img
-            src={props.outputURL}
-            alt="Style"
-            style={{filter: 'hue-rotate(180deg)'}}
-          />
+          <a href={props.styleURL} target="_blank" rel="noopener noreferrer">
+            <img
+              src={props.styleURL}
+              alt="Style"
+              style={{width: '100%'}}
+            />
+          </a>
         </Col>
       </Row>
     </div>
