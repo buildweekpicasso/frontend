@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Label, CardImg, CardBody, CustomInput } from 'reactstrap';
+import { Card, Label, CardImg, CardHeader, CardFooter, CustomInput } from 'reactstrap';
 
 export default props => {
   return props.styleImages.map(img => 
@@ -8,7 +8,7 @@ export default props => {
         className='rounded-lg'
       >
         <Label className='StyleImage' style={{width: '100%'}} check>
-          <CardBody>
+          <CardHeader>
             <CustomInput
                 type="radio"
                 checked={props.activeStyle === `${img.id}`}
@@ -18,7 +18,7 @@ export default props => {
                 name="style-select"
                 label="Select this style"
               />
-          </CardBody>
+          </CardHeader>
           <CardImg
             bottom
             id={img.id}
@@ -26,14 +26,14 @@ export default props => {
             src={`${props.baseURL}/styles/${img.imageUrl}`}
             alt={img.title}
           />
-          <CardBody>
+          <CardFooter>
             <p>
               <strong>Title:</strong> {img.title}
             </p>
             <p>
               <strong>Year(s):</strong> {img.year}
             </p>
-          </CardBody>
+          </CardFooter>
         </Label>
       </Card>);
 }

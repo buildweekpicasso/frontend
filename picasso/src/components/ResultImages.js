@@ -4,10 +4,11 @@ import { Col, Row } from 'reactstrap';
 export default props => {
   return (
     <div>
-      <a href={`https://www.facebook.com/sharer.php?u=${window.location.href}`} target="_blank" rel="noopener noreferrer">
+      <h4 style={{display: 'inline'}}>Share:</h4>{` `}
+      <a href={`https://www.facebook.com/sharer.php?u=${window.location.href}`} target="_blank" rel="noopener noreferrer" id='fb-share'>
         <i class="fab fa-facebook"></i>
       </a>{` `}
-      <a href={`https://twitter.com/intent/tweet?url=${window.location.href}`} target="_blank" rel="noopener noreferrer">
+      <a href={`https://twitter.com/intent/tweet?url=${window.location.href}`} target="_blank" rel="noopener noreferrer" id='tw-share'>
         <i class="fab fa-twitter-square"></i>
       </a>
       <Row>
