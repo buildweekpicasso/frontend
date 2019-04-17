@@ -40,7 +40,7 @@ class App extends Component {
             )}
           />
           <Route
-            path='/result'
+            path='/result/:key'
             render={props => (
               <ResultImages
                 {...props}

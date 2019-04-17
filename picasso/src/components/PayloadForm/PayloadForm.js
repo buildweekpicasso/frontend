@@ -55,7 +55,7 @@ export default class PayloadForm extends React.Component {
       formData.append('styleID', this.state.formData.styleID);
       this.props.submitPayload(formData)
         .then(() => {
-          this.props.history.push('/result');
+          this.props.history.push('/result/0');
         })
       this.setState({
         formData: {
