@@ -74,7 +74,7 @@ export default class PayloadForm extends React.Component {
       <div className="PayloadForm">
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
-            <Row className='justify-content-between' style={{padding: '1em'}}>
+            <Row className='justify-content-between align-items-center' style={{padding: '0 1em'}}>
               <h3>
                 <span className="spanIB">Choose an Image</span>{` `}
                 <span className="spanIB">and Style</span>
@@ -130,7 +130,7 @@ export default class PayloadForm extends React.Component {
                       href={this.state.previewImg}
                       target='_blank'
                     >
-                      <Media object className='mr-3 img-thumbnail' src={this.state.previewImg} alt='Click to view full size image' style={{maxWidth: '200px'}} />
+                      <Media object className='mr-3 img-thumbnail' src={this.state.previewImg} alt='Click to view full size image' style={{maxWidth: '200px', backgroundColor: 'white'}} />
                     </Media>
                     <Media className='align-self-center'>
                       <Media body>

@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import './Login.scss';
-import { login, signup } from '../../actions';
 
-class Login extends React.Component {
+export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -93,12 +92,3 @@ class Login extends React.Component {
     );
   }
 }
-
-const mapStateToProps = ({ loggingIn, signingUp }) => ({
-  loggingIn, signingUp
-});
-
-export default connect(
-  mapStateToProps,
-  { login, signup }
-)(Login);

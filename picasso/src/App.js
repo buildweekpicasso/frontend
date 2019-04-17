@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-// import './App.scss';
-
 import Navbar from './components/Navbar/Navbar';
 import PrivateRoute from './components/PrivateRoute';
 import Login from './components/Login/Login';
@@ -12,7 +10,7 @@ import Private from './components/Private';
 import PayloadForm from './components/PayloadForm/PayloadForm';
 import ResultImages from './components/ResultImages';
 
-import { fetchStyleImages, baseURL, testURL, submitPayload } from './actions';
+import { baseURL, testURL, fetchStyleImages, submitPayload, login, signup } from './actions';
 
 class App extends Component {
   constructor(props) {
@@ -30,6 +28,7 @@ class App extends Component {
             render={props => (
               <PayloadForm
                 {...props}
+                baseURL={baseURL}
                 testURL={testURL}
                 fetchStyleImages={this.props.fetchStyleImages}
                 fetchingStyles={this.props.fetchingStyles}
@@ -51,15 +50,27 @@ class App extends Component {
           />
           <Route
             path='/login'
-            component={Login}
+            render={props => (
+              <Login
+                {...props}
+                login={this.props.login}
+                loggingIn={this.props.loggingIn}
+              />
+            )}
           />
           <Route
             path='/logout'
-            component={Logout}
+            render={props => (<Logout {...props} />)}
           />
           <Route
             path='/signup'
-            component={Login}
+            render={props => (
+              <Login
+                {...props}
+                signup={this.props.signup}
+                signingIn={this.props.signingUp}
+              />
+            )}
           />
           <PrivateRoute
             exact path='/private'
@@ -75,5 +86,5 @@ const mapStateToProps = ({ error, loggingIn, signingUp, fetchingStyles, styleIma
 
 export default connect(
   mapStateToProps,
-  { fetchStyleImages, submitPayload }
+  { fetchStyleImages, submitPayload, login, signup }
 )(App);

@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Row } from 'reactstrap';
 
 export default props => {
-  console.log(props.resultImages)
+  if(props.resultImages.request_key === null) { return <h3 style={{textAlign: 'center'}}>You have no recent results</h3>}
   return (
     <div>
       <Row className='justify-content-between' style={{padding: '1em'}}>

@@ -23,10 +23,6 @@ export default class Navbar extends React.Component {
     });
   }
 
-  logOut = () => {
-    localStorage.removeItem('token');
-  }
-
   render() {
     const haveToken = localStorage.getItem('token');
     return (
@@ -60,7 +56,6 @@ export default class Navbar extends React.Component {
                     <NavLinkRS
                       to="/logout"
                       tag={Link}
-                      onClick={this.logOut}
                     >
                       Log Out
                     </NavLinkRS>
