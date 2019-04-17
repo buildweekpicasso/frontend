@@ -130,20 +130,22 @@ class PayloadForm extends React.Component {
                 : "Choose your image"}
               onChange={this.handleUploadChange}
             />
-            <Media className='mt-3'>
-              <Media left middle
-                href={this.state.previewImg}
-                target='_blank'
-              >
-                <Media object className='mr-3 img-thumbnail' src={this.state.previewImg} alt='Click to view full size image' style={{maxWidth: '200px'}} />
-              </Media>
-              <Media className='align-self-center'>
-                <Media body>
-                  {this.state.formData.contentImg !== null
-                      && this.state.formData.contentImg.name}
-                </Media>
-              </Media>
-            </Media>
+            { this.state.formData.contentImg !== null
+                && <Media className='mt-3'>
+                    <Media left middle
+                      href={this.state.previewImg}
+                      target='_blank'
+                    >
+                      <Media object className='mr-3 img-thumbnail' src={this.state.previewImg} alt='Click to view full size image' style={{maxWidth: '200px'}} />
+                    </Media>
+                    <Media className='align-self-center'>
+                      <Media body>
+                        {this.state.formData.contentImg !== null
+                            && this.state.formData.contentImg.name}
+                      </Media>
+                    </Media>
+                  </Media>
+          }
           </FormGroup>
           <FormGroup check style={{paddingLeft: '0'}}>
             <legend>
