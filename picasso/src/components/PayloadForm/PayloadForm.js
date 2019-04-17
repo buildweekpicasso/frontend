@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, FormGroup, Label, CustomInput, Button, CardColumns, Row } from 'reactstrap';
+import { Form, FormGroup, Label, CustomInput, Button, Media, CardImg, CardColumns, Row } from 'reactstrap';
 import { fetchStyleImages, baseURL, testURL, submitPayload } from '../../actions';
 import StyleImages from './StyleImages';
 import ResultImages from '../ResultImages';
@@ -27,7 +27,8 @@ class PayloadForm extends React.Component {
       formData: {
         ...this.state.formData,
         contentImg: e.target.files[0],
-      }
+      },
+      previewImg: URL.createObjectURL(e.target.files[0]),
     });
   }
 
@@ -65,11 +66,11 @@ class PayloadForm extends React.Component {
     return (
       <div className="PayloadForm">
         <ResultImages
-          outputURL={`${testURL}/${this.props.resultImages.file}`}
+          outputURL={`${baseURL}/${this.props.resultImages.file}`}
         />
         {/* {this.props.resultImages.file !== null
           && <ResultImages
-                outputURL={`${testURL}/${this.props.resultImages.file}`}
+                outputURL={`${baseURL}/${this.props.resultImages.file}`}
               />} */}
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
@@ -94,10 +95,24 @@ class PayloadForm extends React.Component {
               id="upload-image"
               name="upload-image"
               label={this.state.formData.contentImg
-                ? this.state.formData.contentImg.name
+                ? "Choose a different image"
                 : "Choose your image"}
               onChange={this.handleUploadChange}
             />
+            <Media className='mt-3'>
+              <Media left middle
+                href={this.state.previewImg}
+                target='_blank'
+              >
+                <Media object className='mr-3 img-thumbnail' src={this.state.previewImg} alt='Click to view full size image' style={{maxWidth: '200px'}} />
+              </Media>
+              <Media>
+                <Media body className='align-self-center'>
+                  {this.state.formData.contentImg !== null
+                    && this.state.formData.contentImg.name}
+                </Media>
+              </Media>
+            </Media>
           </FormGroup>
           <FormGroup check style={{paddingLeft: '0'}}>
             <legend>
