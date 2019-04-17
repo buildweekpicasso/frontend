@@ -2,6 +2,7 @@ import React from 'react';
 import { Col, Row } from 'reactstrap';
 
 export default props => {
+  console.log(props.resultImages)
   return (
     <div>
       <Row className='justify-content-between' style={{padding: '1em'}}>
@@ -13,16 +14,16 @@ export default props => {
           <a href={`https://twitter.com/intent/tweet?url=${window.location.href}&hashtags=PicassoPaintedIt`} target="_blank" rel="noopener noreferrer" id='tw-share'>
             <i className="fab fa-twitter-square"></i>
           </a>{` `}
-          <a href={`https://pinterest.com/pin/create/button/?url=${window.location.href}&media=${props.outputURL}`} target="_blank" rel="noopener noreferrer" id='pin-share'>
+          <a href={`https://pinterest.com/pin/create/button/?url=${window.location.href}&media=${props.resultImages.output_url}`} target="_blank" rel="noopener noreferrer" id='pin-share'>
             <i className="fab fa-pinterest"></i>
           </a>
         </div>
       </Row>
       <Row>
         <Col>
-          <a href={props.outputURL} target="_blank" rel="noopener noreferrer">
+          <a href={props.resultImages.output_url} target="_blank" rel="noopener noreferrer">
             <img
-              src={props.outputURL}
+              src={props.resultImages.output_url}
               alt=""
               style={{width: '100%'}}
             />
@@ -31,20 +32,20 @@ export default props => {
       </Row>
       <Row>
         <Col sm="6">
-          <h4>Content Image</h4>
-          <a href={props.contentURL} target="_blank" rel="noopener noreferrer">
+          <h4 className='mt-3'>Content Image</h4>
+          <a href={props.resultImages.content_url} target="_blank" rel="noopener noreferrer">
             <img
-              src={props.contentURL}
+              src={props.resultImages.content_url}
               alt="Content"
               style={{width: '100%'}}
             />
           </a>
         </Col>
         <Col sm="6">
-          <h4>Style Image</h4>
-          <a href={props.styleURL} target="_blank" rel="noopener noreferrer">
+          <h4 className='mt-3'>Style Image</h4>
+          <a href={props.resultImages.style_url} target="_blank" rel="noopener noreferrer">
             <img
-              src={props.styleURL}
+              src={props.resultImages.style_url}
               alt="Style"
               style={{width: '100%'}}
             />

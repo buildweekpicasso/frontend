@@ -24,6 +24,7 @@ const initialState = {
     output_url: null,
     content_url: null,
     style_url: null,
+    request_key: null,
   },
 }
 

@@ -1,11 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Form, FormGroup, Label, CustomInput, ButtonGroup, Button, Media, CardImg, CardColumns, Row } from 'reactstrap';
-import { fetchStyleImages, baseURL, testURL, submitPayload } from '../../actions';
+
 import StyleImages from './StyleImages';
 import ResultImages from '../ResultImages';
 
-class PayloadForm extends React.Component {
+export default class PayloadForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -55,20 +54,15 @@ class PayloadForm extends React.Component {
       formData.append('content-image', this.state.formData.contentImg)
       formData.append('styleID', this.state.formData.styleID);
       this.props.submitPayload(formData)
-        // .then(() => {
-        //   window.location.assign(this.props.processedURL);
-        // })
+        .then(() => {
+          this.props.history.push('/result');
+        })
       this.setState({
         formData: {
           contentImg: null,
           styleID: null,
         },
         previewImg: null,
-        resultImages: {
-          output_url: null,
-          content_url: null,
-          style_url: null,
-        },
       })
     }
   }
@@ -78,15 +72,6 @@ class PayloadForm extends React.Component {
 
     return (
       <div className="PayloadForm">
-        <ResultImages
-          outputURL={this.props.resultImages.output_url}
-          contentURL={this.props.resultImages.content_url}
-          styleURL={this.props.resultImages.style_url}
-        />
-        {/* {this.props.resultImages.file !== null
-          && <ResultImages
-                outputURL={`${baseURL}/${this.props.resultImages.file}`}
-              />} */}
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
             <Row className='justify-content-between' style={{padding: '1em'}}>
@@ -167,7 +152,7 @@ class PayloadForm extends React.Component {
               <StyleImages
                 activeStyle={this.state.formData.styleID}
                 styleImages={this.props.styleImages}
-                baseURL={testURL}
+                baseURL={this.props.testURL}
                 handleStyleSelect={this.handleStyleSelect}
               />
             </CardColumns>
@@ -177,12 +162,3 @@ class PayloadForm extends React.Component {
     )
   }
 }
-
-const mapStateToProps = ({ fetchingStyles, styleImages, submittingPayload, resultImages }) => ({
-  fetchingStyles, styleImages, submittingPayload, resultImages
-});
-
-export default connect(
-  mapStateToProps,
-  { fetchStyleImages, submitPayload }
-)(PayloadForm);
