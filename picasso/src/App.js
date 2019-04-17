@@ -68,7 +68,7 @@ class App extends Component {
               <Login
                 {...props}
                 signup={this.props.signup}
-                signingIn={this.props.signingUp}
+                signingUp={this.props.signingUp}
               />
             )}
           />
