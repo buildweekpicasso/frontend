@@ -4,8 +4,9 @@ import './App.scss';
 import Navbar from './components/Navbar/Navbar';
 import PrivateRoute from './components/PrivateRoute';
 import Login from './components/Login/Login';
+import Logout from './components/Navbar/Logout';
 import Private from './components/Private';
-import PayloadForm from './components/PayloadForm';
+import PayloadForm from './components/PayloadForm/PayloadForm';
 
 class App extends Component {
   render() {
@@ -14,12 +15,16 @@ class App extends Component {
         <Navbar />
         <div className="container">
           <Route
-            path='/request'
+            exact path='/'
             component={PayloadForm}
           />
           <Route
             path='/login'
             component={Login}
+          />
+          <Route
+            path='/logout'
+            component={Logout}
           />
           <Route
             path='/signup'

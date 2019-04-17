@@ -46,6 +46,8 @@ class Login extends React.Component {
   };
 
   render() {
+    const canSubmit = !!this.state.creds.username && !!this.state.creds.password;
+
     return localStorage.getItem('token')
       ?(<Redirect to='/private' />)
       :(<div className='Login'>
@@ -76,6 +78,9 @@ class Login extends React.Component {
           </FormGroup>
           <Button
             type='submit'
+            color={canSubmit ? 'primary' : 'secondary' }
+            disabled={!canSubmit}
+            title='Both a username and password must be entered before submitting'
           >
             {
               this.props.location.pathname === '/login'
