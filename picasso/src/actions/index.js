@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosAuth from '../utils/axiosAuth';
 
 export const baseURL = 'https://bw-picasso.herokuapp.com';
 export const testURL = 'https://quiet-shore-93010.herokuapp.com';

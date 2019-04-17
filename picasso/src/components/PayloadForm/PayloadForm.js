@@ -55,7 +55,8 @@ class PayloadForm extends React.Component {
         formData: {
           contentImg: null,
           styleID: null,
-        }
+        },
+        previewImg: null,
       })
     }
   }
@@ -106,10 +107,12 @@ class PayloadForm extends React.Component {
               >
                 <Media object className='mr-3 img-thumbnail' src={this.state.previewImg} alt='Click to view full size image' style={{maxWidth: '200px'}} />
               </Media>
-              <Media>
-                <Media body className='align-self-center'>
-                  {this.state.formData.contentImg !== null
-                    && this.state.formData.contentImg.name}
+              <Media className='align-self-center'>
+                <Media body>
+                  <p>
+                    {this.state.formData.contentImg !== null
+                      && this.state.formData.contentImg.name}
+                  </p>
                 </Media>
               </Media>
             </Media>
