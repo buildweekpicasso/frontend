@@ -60,14 +60,16 @@ class PayloadForm extends React.Component {
 
   render() {
     const noSubmit = this.state.formData.contentImg === null || this.state.formData.styleID === null;
-    console.log(window.location)
 
     return (
       <div className="PayloadForm">
-        {this.props.resultImages.output_url !== null
+        <ResultImages
+          outputURL={`${testURL}/${this.props.resultImages.file}`}
+        />
+        {/* {this.props.resultImages.file !== null
           && <ResultImages
                 outputURL={`${testURL}/${this.props.resultImages.file}`}
-              />}
+              />} */}
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
             <Row className='justify-content-between' style={{padding: '1em'}}>
