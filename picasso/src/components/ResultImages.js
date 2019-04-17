@@ -4,8 +4,8 @@ import { Col, Row } from 'reactstrap';
 export default props => {
   return (
     <div>
-      <a href={`https://www.facebook.com/sharer.php?u=${props.pageURL}`} target="_blank" rel="noopener noreferrer">Facebook</a>{` `}
-      <a href={`https://twitter.com/intent/tweet?url=${props.pageURL}`} target="_blank" rel="noopener noreferrer">Twitter</a>
+      <a href={`https://www.facebook.com/sharer.php?u=${window.location.href}`} target="_blank" rel="noopener noreferrer">Facebook</a>{` `}
+      <a href={`https://twitter.com/intent/tweet?url=${window.location.href}`} target="_blank" rel="noopener noreferrer">Twitter</a>
       <Row>
         <Col sm="8" style={{padding: '0'}}>
           <img

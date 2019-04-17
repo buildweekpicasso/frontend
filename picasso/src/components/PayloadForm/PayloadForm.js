@@ -60,14 +60,12 @@ class PayloadForm extends React.Component {
 
   render() {
     const noSubmit = this.state.formData.contentImg === null || this.state.formData.styleID === null;
+    console.log(window.location)
 
     return (
       <div className="PayloadForm">
         {this.props.resultImages.output_url !== null
-          && <ResultImages
-                pageURL={`https://picasso-frontend.netlify.com${this.props.location.pathname}`}
-                outputURL={`${testURL}/${this.props.resultImages.file}`}
-              />}
+          && <ResultImages />}
         <Form onSubmit={this.handleSubmit}>
           <FormGroup className="d-sm-flex justify-content-between">
             <h3>
