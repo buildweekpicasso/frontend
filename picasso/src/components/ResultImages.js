@@ -13,7 +13,7 @@ export default props => {
           <a href={`https://twitter.com/intent/tweet?url=${window.location.href}&hashtags=PicassoPaintedIt`} target="_blank" rel="noopener noreferrer" id='tw-share'>
             <i className="fab fa-twitter-square"></i>
           </a>{` `}
-          <a href={`http://pinterest.com/pin/create/button/?url=${window.location.href}&media=${props.outputURL}`} target="_blank" rel="noopener noreferrer" id='pin-share'>
+          <a href={`https://pinterest.com/pin/create/button/?url=${window.location.href}&media=${props.outputURL}`} target="_blank" rel="noopener noreferrer" id='pin-share'>
             <i className="fab fa-pinterest"></i>
           </a>
         </div>
