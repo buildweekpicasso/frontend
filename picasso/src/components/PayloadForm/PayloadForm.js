@@ -91,6 +91,7 @@ class PayloadForm extends React.Component {
                 type='submit'
                 disabled={noSubmit}
                 color={noSubmit ? 'secondary' : 'primary'}
+                title='You must select a method, a style, and an image to process before submitting'
               >
                 Submit
               </Button>
@@ -113,6 +114,7 @@ class PayloadForm extends React.Component {
                 color={localStorage.getItem('token') ? 'primary' : 'secondary' }
                 disabled={!localStorage.getItem('token')}
                 active={this.state.method === 'method2'}
+                title='You must be logged in to select this option'
               >
                 Slower
               </Button>
