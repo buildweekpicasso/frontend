@@ -12,7 +12,8 @@ class PayloadForm extends React.Component {
       formData: {
         contentImg: null,
         styleID: null,
-      }
+      },
+      previewImg: null,
     }
   }
 
@@ -98,7 +99,7 @@ class PayloadForm extends React.Component {
               onChange={this.handleUploadChange}
             />
           </FormGroup>
-          <FormGroup check>
+          <FormGroup check style={{paddingLeft: '0'}}>
             <legend>
               {this.state.formData.styleID === null
                 ? 'Select a Style'
