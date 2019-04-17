@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, FormGroup, Label, CustomInput, Button, CardColumns } from 'reactstrap';
+import { Form, FormGroup, Label, CustomInput, Button, CardColumns, Row } from 'reactstrap';
 import { fetchStyleImages, baseURL, testURL, submitPayload } from '../../actions';
 import StyleImages from './StyleImages';
 import ResultImages from '../ResultImages';
@@ -65,19 +65,23 @@ class PayloadForm extends React.Component {
     return (
       <div className="PayloadForm">
         {this.props.resultImages.output_url !== null
-          && <ResultImages />}
+          && <ResultImages
+                outputURL={`${testURL}/${this.props.resultImages.file}`}
+              />}
         <Form onSubmit={this.handleSubmit}>
-          <FormGroup className="d-sm-flex justify-content-between">
-            <h3>
-              <span className="spanIB">Choose an Image</span>{` `}
-              <span className="spanIB">and Style</span>
-            </h3>
-            <Button
-              type='submit'
-              disabled={noSubmit}
-            >
-              Submit
-            </Button>
+          <FormGroup>
+            <Row className='justify-content-between' style={{padding: '1em'}}>
+              <h3>
+                <span className="spanIB">Choose an Image</span>{` `}
+                <span className="spanIB">and Style</span>
+              </h3>
+              <Button
+                type='submit'
+                disabled={noSubmit}
+              >
+                Submit
+              </Button>
+            </Row>
           </FormGroup>
           <FormGroup>
             <Label for="upload-image">Pick an Image to Transform</Label>
