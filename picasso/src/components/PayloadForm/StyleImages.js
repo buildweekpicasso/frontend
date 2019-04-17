@@ -12,7 +12,7 @@ export default props => {
             top
             id={img.id}
             width='100%'
-            src={`${props.baseURL}/styles/${img.thumbUrl}`}
+            src={`${props.baseURL}/styles/${img.imageUrl}`}
             alt={img.title}
           />
           <CardBody>

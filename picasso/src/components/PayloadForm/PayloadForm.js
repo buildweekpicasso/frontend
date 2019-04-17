@@ -45,9 +45,9 @@ class PayloadForm extends React.Component {
       formData.append('content-image', this.state.formData.contentImg)
       formData.append('styleID', this.state.formData.styleID);
       this.props.submitPayload(formData)
-        .then(() => {
-          window.location.assign(this.props.processedURL);
-        })
+        // .then(() => {
+        //   window.location.assign(this.props.processedURL);
+        // })
       this.setState({
         formData: {
           contentImg: null,
