@@ -20,7 +20,9 @@ const initialState = {
   fetchingStyles: false,
   styleImages: [],
   submittingPayload: false,
-  processedURL: null,
+  resultImages: {
+    file: null,
+  },
 }
 
 const reducer = (state = initialState, action) => {
@@ -91,7 +93,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: '',
         submittingPayload: false,
-        processedURL: action.payload,
+        resultImages: action.payload,
       }
     case SUBMIT_PAYLOAD_FAILURE:
       return {

@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Form, FormGroup, Label, CustomInput, Button, CardColumns } from 'reactstrap';
-import { fetchStyleImages, testURL, submitPayload } from '../../actions';
+import { fetchStyleImages, baseURL, testURL, submitPayload } from '../../actions';
 import StyleImages from './StyleImages';
+import ResultImages from '../ResultImages';
 
 class PayloadForm extends React.Component {
   constructor(props) {
@@ -62,6 +63,11 @@ class PayloadForm extends React.Component {
 
     return (
       <div className="PayloadForm">
+        {this.props.resultImages.output_url !== null
+          && <ResultImages
+                pageURL={`https://picasso-frontend.netlify.com${this.props.location.pathname}`}
+                outputURL={`${testURL}/${this.props.resultImages.file}`}
+              />}
         <Form onSubmit={this.handleSubmit}>
           <FormGroup className="d-sm-flex justify-content-between">
             <h3>
@@ -110,8 +116,8 @@ class PayloadForm extends React.Component {
   }
 }
 
-const mapStateToProps = ({ fetchingStyles, styleImages, submittingPayload, processedURL }) => ({
-  fetchingStyles, styleImages, submittingPayload, processedURL
+const mapStateToProps = ({ fetchingStyles, styleImages, submittingPayload, resultImages }) => ({
+  fetchingStyles, styleImages, submittingPayload, resultImages
 });
 
 export default connect(

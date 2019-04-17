@@ -76,11 +76,12 @@ export const SUBMIT_PAYLOAD_SUCCESS = 'SUBMIT_PAYLOAD_SUCCESS';
 export const SUBMIT_PAYLOAD_FAILURE = 'SUBMIT_PAYLOAD_FAILURE';
 export const submitPayload = formData => dispatch => {
   dispatch({ type: SUBMIT_PAYLOAD_START });
-  return axios.post(`${baseURL}/images/uploadprocess/`, formData)
+  return axios.post(`${baseURL}/images/upload/`, formData)
     .then(res => {
+      console.log(res.data)
       dispatch({
         type: SUBMIT_PAYLOAD_SUCCESS,
-        payload: res.data.output_url,
+        payload: res.data,
       })
     })
     .catch(err => {
