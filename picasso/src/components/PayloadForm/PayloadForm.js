@@ -69,7 +69,7 @@ class PayloadForm extends React.Component {
   }
 
   render() {
-    const noSubmit = this.state.formData.contentImg === null || this.state.formData.styleID === null;
+    const noSubmit = this.state.formData.contentImg === null || this.state.formData.styleID === null || this.state.method === null;
 
     return (
       <div className="PayloadForm">
