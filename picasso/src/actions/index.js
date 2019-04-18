@@ -137,24 +137,24 @@ export const fetchRequest = key => dispatch => {
     })
 }
 
-// export const FETCH_GALLERY_START = 'FETCH_GALLERY_START';
-// export const FETCH_GALLERY_SUCCESS = 'FETCH_GALLERY_SUCCESS';
-// export const FETCH_GALLERY_FAILURE = 'FETCH_GALLERY_FAILURE';
-// export const fetchGallery = () => dispatch => {
-//   dispatch({ type: FETCH_GALLERY_START });
-//   return axios.get(`${testURL}/images/`)
-//     .then(res => {
-//       console.log(res.data);
-//       dispatch({
-//         type: FETCH_GALLERY_SUCCESS,
-//         payload: res.data,
-//       })
-//     })
-//     .catch(err => {
-//       console.log(err.response);
-//       dispatch({
-//         type: FETCH_GALLERY_FAILURE,
-//         payload: err.response
-//       })
-//     })
-// }
+export const FETCH_GALLERY_START = 'FETCH_GALLERY_START';
+export const FETCH_GALLERY_SUCCESS = 'FETCH_GALLERY_SUCCESS';
+export const FETCH_GALLERY_FAILURE = 'FETCH_GALLERY_FAILURE';
+export const fetchGallery = () => dispatch => {
+  dispatch({ type: FETCH_GALLERY_START });
+  return axios.get(`${testURL}/images/public`)
+    .then(res => {
+      console.log('action',res.data);
+      dispatch({
+        type: FETCH_GALLERY_SUCCESS,
+        payload: res.data,
+      })
+    })
+    .catch(err => {
+      console.log(err.response);
+      dispatch({
+        type: FETCH_GALLERY_FAILURE,
+        payload: err.response
+      })
+    })
+}

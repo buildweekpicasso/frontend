@@ -45,9 +45,9 @@ export default class Navbar extends React.Component {
               <NavItem>
                   <NavLinkRS exact to="/result" tag={NavLink}>Result (debug)</NavLinkRS>
               </NavItem>
-              {/* <NavItem>
+              <NavItem>
                 <NavLinkRS to='/gallery' tag={NavLink}>Gallery</NavLinkRS>
-              </NavItem> */}
+              </NavItem>
               {!hasToken
                 ? (
                   <>

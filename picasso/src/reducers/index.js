@@ -17,9 +17,9 @@ import {
   FETCH_REQUEST_START,
   FETCH_REQUEST_SUCCESS,
   FETCH_REQUEST_FAILURE,
-  // FETCH_GALLERY_START,
-  // FETCH_GALLERY_SUCCESS,
-  // FETCH_GALLERY_FAILURE,
+  FETCH_GALLERY_START,
+  FETCH_GALLERY_SUCCESS,
+  FETCH_GALLERY_FAILURE,
 } from '../actions';
 
 const initialState = {
@@ -158,25 +158,25 @@ const reducer = (state = initialState, action) => {
         error: action.payload,
         fetchingRequest: false,
       }
-    // case FETCH_GALLERY_START:
-    //   return {
-    //     ...state,
-    //     error: '',
-    //     fetchingGallery: true,
-    //   }
-    // case FETCH_GALLERY_SUCCESS:
-    //   return {
-    //     ...state,
-    //     error: '',
-    //     fetchingGallery: false,
-    //     gallery: action.payload,
-    //   }
-    // case FETCH_GALLERY_FAILURE:
-    //   return {
-    //     ...state,
-    //     error: action.payload,
-    //     fetchingGallery: false,
-    //   }
+    case FETCH_GALLERY_START:
+      return {
+        ...state,
+        error: '',
+        fetchingGallery: true,
+      }
+    case FETCH_GALLERY_SUCCESS:
+      return {
+        ...state,
+        error: '',
+        fetchingGallery: false,
+        gallery: action.payload,
+      }
+    case FETCH_GALLERY_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        fetchingGallery: false,
+      }
     default:
       return state;
   }

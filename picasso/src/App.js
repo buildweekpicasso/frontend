@@ -9,9 +9,9 @@ import Logout from './components/Navbar/Logout';
 import Private from './components/Private';
 import PayloadForm from './components/PayloadForm/PayloadForm';
 import ResultImages from './components/ResultImages';
-// import Gallery from './components/Gallery';
+import Gallery from './components/Gallery';
 
-import { baseURL, testURL, fetchStyleImages, submitPayload, login, signup, fetchRequest } from './actions';
+import { baseURL, testURL, fetchStyleImages, submitPayload, login, signup, fetchRequest, fetchGallery } from './actions';
 
 class App extends Component {
   render() {
@@ -50,7 +50,7 @@ class App extends Component {
               />
             )}
           />
-          {/* <Route
+          <Route
             path='/gallery'
             render={props => (
               <Gallery
@@ -58,9 +58,10 @@ class App extends Component {
                 error={this.props.error}
                 fetchGallery={this.props.fetchGallery}
                 fetchingGallery={this.props.fetchGallery}
+                gallery={this.props.gallery}
               />
             )}
-          /> */}
+          />
           <Route
             path='/login'
             render={props => (
@@ -97,9 +98,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ error, loggingIn, signingUp, fetchingStyles, styleImages, submittingPayload, resultImages, processDeep, fetchingRequest }) => ({ error, loggingIn, signingUp, fetchingStyles, styleImages, submittingPayload, resultImages, processDeep, fetchingRequest })
+const mapStateToProps = ({ error, loggingIn, signingUp, fetchingStyles, styleImages, submittingPayload, resultImages, processDeep, fetchingRequest, fetchingGallery, gallery }) => ({ error, loggingIn, signingUp, fetchingStyles, styleImages, submittingPayload, resultImages, processDeep, fetchingRequest, fetchingGallery, gallery })
 
 export default connect(
   mapStateToProps,
-  { fetchStyleImages, submitPayload, login, signup, fetchRequest }
+  { fetchStyleImages, submitPayload, login, signup, fetchRequest, fetchGallery }
 )(App);
