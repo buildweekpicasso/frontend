@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row } from 'reactstrap';
+import { Col, Row, CardImg } from 'reactstrap';
 
 export default class ResultImages extends React.Component {
   constructor(props) {
@@ -38,7 +38,7 @@ export default class ResultImages extends React.Component {
         <Row>
           <Col>
             <a href={this.props.resultImages.output_url} target="_blank" rel="noopener noreferrer">
-              <img
+              <CardImg
                 src={this.props.resultImages.output_url}
                 alt=""
                 style={{width: '100%'}}
@@ -50,7 +50,7 @@ export default class ResultImages extends React.Component {
           <Col sm="6">
             <h4 className='mt-3'>Content Image</h4>
             <a href={this.props.resultImages.content_url} target="_blank" rel="noopener noreferrer">
-              <img
+              <CardImg
                 src={this.props.resultImages.content_url}
                 alt="Content"
                 style={{width: '100%'}}
@@ -60,7 +60,7 @@ export default class ResultImages extends React.Component {
           <Col sm="6">
             <h4 className='mt-3'>Style Image</h4>
             <a href={this.props.resultImages.style_url} target="_blank" rel="noopener noreferrer">
-              <img
+              <CardImg
                 src={this.props.resultImages.style_url}
                 alt="Style"
                 style={{width: '100%'}}

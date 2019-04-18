@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button, Spinner } from 'reactstrap';
 import './Login.scss';
 
 export default class Login extends React.Component {
@@ -82,8 +82,12 @@ export default class Login extends React.Component {
           >
             {
               this.props.location.pathname === '/login'
-                ? 'Log In'
-                : 'Sign Up'
+                ? !this.props.loggingIn
+                  ? 'Log In'
+                  : <Spinner size='sm' color='dark' />
+                : !this.props.signingIn
+                  ? 'Sign Up'
+                  : <Spinner size='sm' color='dark' />
             }
           </Button>
         </Form>

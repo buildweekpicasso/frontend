@@ -1,8 +1,7 @@
 import React from 'react';
-import { Form, FormGroup, Label, CustomInput, ButtonGroup, Button, Media, CardImg, CardColumns, Row } from 'reactstrap';
+import { Alert, Form, FormGroup, Label, CustomInput, ButtonGroup, Button, Media, CardColumns, Row, Spinner } from 'reactstrap';
 
 import StyleImages from './StyleImages';
-import ResultImages from '../ResultImages';
 
 export default class PayloadForm extends React.Component {
   constructor(props) {
@@ -49,29 +48,37 @@ export default class PayloadForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    if(this.state.formData.contentImg !== null || this.state.formData.styleID !== null) {
-      let formData = new FormData();
-      formData.append('content-image', this.state.formData.contentImg)
-      formData.append('styleID', this.state.formData.styleID);
-      this.props.submitPayload(formData)
-        .then(() => {
-          this.props.history.push('/result/0');
-        })
-      this.setState({
-        formData: {
-          contentImg: null,
-          styleID: null,
-        },
-        previewImg: null,
-      })
-    }
+    let formData = new FormData();
+    formData.append('content-image', this.state.formData.contentImg)
+    formData.append('styleID', this.state.formData.styleID);
+    this.state.method === 'method1'
+      ? this.props.submitPayload(formData)
+          .then(() => {
+            // console.log('WHAT THE HELL?!');
+            !this.props.error
+              && this.props.history.push('/result/0');
+          })
+      : this.state.method === 'method2'
+          && this.props.submitDeepPayload(formData);
+    this.setState({
+      formData: {
+        contentImg: null,
+        styleID: null,
+      },
+      previewImg: null,
+    })
   }
 
   render() {
     const noSubmit = this.state.formData.contentImg === null || this.state.formData.styleID === null || this.state.method === null;
+    const haveToken = localStorage.getItem('token');
+    console.log('deepProcess',this.props.deepProcess)
 
     return (
       <div className="PayloadForm">
+        <Alert color="primary" isOpen={this.props.deepProcess}>
+          Your request is now processing. An email with your processed image will be sent to the address associated with this account.
+        </Alert>
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
             <Row className='justify-content-between align-items-center' style={{padding: '0 1em'}}>
@@ -82,10 +89,14 @@ export default class PayloadForm extends React.Component {
               <Button
                 type='submit'
                 disabled={noSubmit}
-                color={noSubmit ? 'secondary' : 'primary'}
+                color='warning'
+                // color={noSubmit ? 'secondary' : 'primary'}
                 title='You must select a method, a style, and an image to process before submitting'
               >
-                Submit
+                { !this.props.submittingPayload
+                    ? 'Submit'
+                    : <Spinner size='sm' color='light' />
+                }
               </Button>
             </Row>
           </FormGroup>
@@ -103,8 +114,8 @@ export default class PayloadForm extends React.Component {
               <Button
                 id='method2'
                 onClick={this.handleMethodSelect}
-                color={localStorage.getItem('token') ? 'primary' : 'secondary' }
-                disabled={!localStorage.getItem('token')}
+                color={haveToken ? 'primary' : 'secondary' }
+                disabled={!haveToken}
                 active={this.state.method === 'method2'}
                 title='You must be logged in to select this option'
               >

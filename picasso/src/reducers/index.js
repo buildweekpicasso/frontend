@@ -11,6 +11,9 @@ import {
   SUBMIT_PAYLOAD_START,
   SUBMIT_PAYLOAD_SUCCESS,
   SUBMIT_PAYLOAD_FAILURE,
+  SUBMIT_DEEP_PAYLOAD_START,
+  SUBMIT_DEEP_PAYLOAD_SUCCESS,
+  SUBMIT_DEEP_PAYLOAD_FAILURE,
 } from '../actions';
 
 const initialState = {
@@ -26,6 +29,7 @@ const initialState = {
     style_url: null,
     request_key: null,
   },
+  deepProcess: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -102,6 +106,27 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         error: action.payload,
+        submittingPayload: false,
+      }
+      case SUBMIT_DEEP_PAYLOAD_START:
+      return {
+        ...state,
+        error: '',
+        submittingPayload: true,
+        deepProcess: false,
+      }
+    case SUBMIT_DEEP_PAYLOAD_SUCCESS:
+      return {
+        ...state,
+        error: '',
+        submittingPayload: false,
+        deepProcess: true,
+      }
+    case SUBMIT_DEEP_PAYLOAD_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        deepProcess: false,
         submittingPayload: false,
       }
     default:

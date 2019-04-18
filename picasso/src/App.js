@@ -28,14 +28,17 @@ class App extends Component {
             render={props => (
               <PayloadForm
                 {...props}
+                error={this.props.error}
                 baseURL={baseURL}
                 testURL={testURL}
                 fetchStyleImages={this.props.fetchStyleImages}
                 fetchingStyles={this.props.fetchingStyles}
                 styleImages={this.props.styleImages}
                 submitPayload={this.props.submitPayload}
+                submitDeepPayload={this.props.submitDeepPayload}
                 submittingPayload={this.props.submittingPayload}
                 resultImages={this.props.resultImages}
+                deepProcess={this.props.deepProcess}
               />
             )}
           />
@@ -44,6 +47,7 @@ class App extends Component {
             render={props => (
               <ResultImages
                 {...props}
+                error={this.props.error}
                 resultImages={this.props.resultImages}
               />
             )}
@@ -53,6 +57,7 @@ class App extends Component {
             render={props => (
               <Login
                 {...props}
+                error={this.props.error}
                 login={this.props.login}
                 loggingIn={this.props.loggingIn}
               />
@@ -67,6 +72,7 @@ class App extends Component {
             render={props => (
               <Login
                 {...props}
+                error={this.props.error}
                 signup={this.props.signup}
                 signingUp={this.props.signingUp}
               />
@@ -82,7 +88,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ error, loggingIn, signingUp, fetchingStyles, styleImages, submittingPayload, resultImages }) => ({ error, loggingIn, signingUp, fetchingStyles, styleImages, submittingPayload, resultImages })
+const mapStateToProps = ({ error, loggingIn, signingUp, fetchingStyles, styleImages, submittingPayload, resultImages, deepProcess }) => ({ error, loggingIn, signingUp, fetchingStyles, styleImages, submittingPayload, resultImages, deepProcess })
 
 export default connect(
   mapStateToProps,
