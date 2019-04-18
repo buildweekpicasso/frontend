@@ -29,11 +29,11 @@ export default class Login extends React.Component {
     this.props.location.pathname === '/login'
       ? this.props.login(this.state.creds)
           .then(() => {
-            this.props.history.push('/private');
+            this.props.history.push('/');
           })
       : this.props.signup(this.state.creds)
           .then(() => {
-            this.props.history.push('/private');
+            this.props.history.push('/');
           });
     this.setState({
       creds: {

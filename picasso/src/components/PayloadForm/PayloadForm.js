@@ -159,14 +159,20 @@ export default class PayloadForm extends React.Component {
                 : `Currently Selected: "${this.props.styleImages.find(img => `${img.id}` === this.state.formData.styleID).title}"`
               }
             </legend>
-            <CardColumns>
-              <StyleImages
-                activeStyle={this.state.formData.styleID}
-                styleImages={this.props.styleImages}
-                baseURL={this.props.testURL}
-                handleStyleSelect={this.handleStyleSelect}
-              />
-            </CardColumns>
+            { !this.props.fetchingStyles
+                ? <CardColumns>
+                    <StyleImages
+                      activeStyle={this.state.formData.styleID}
+                      styleImages={this.props.styleImages}
+                      baseURL={this.props.testURL}
+                      handleStyleSelect={this.handleStyleSelect}
+                    />
+                  </CardColumns>
+                : <div style={{ textAlign: 'center', width: '100%', height: '100%' }}>
+                    <Spinner size='xl' color='dark' style={{ height: '3em', width: '3em' }} />
+                  </div>
+            }
+            
           </FormGroup>
         </Form>
       </div>
