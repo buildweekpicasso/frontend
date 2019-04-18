@@ -32,16 +32,19 @@ export default class Navbar extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-            {hasToken
+            {/* {hasToken
                 && (
                   <NavItem>
                     <NavLinkRS to="/private" tag={NavLink}>Private</NavLinkRS>
                   </NavItem>
                 )
-              }
+              } */}
               <NavItem>
                 <NavLinkRS exact to="/" tag={NavLink}>Image Request</NavLinkRS>
               </NavItem>
+              {/* <NavItem>
+                <NavLinkRS to='/gallery' tag={NavLink}>Gallery</NavLinkRS>
+              </NavItem> */}
               {!hasToken
                 ? (
                   <>
