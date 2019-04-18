@@ -37,8 +37,8 @@ const initialState = {
   },
   processDeep: false,
   fetchingRequest: false,
-  // fetchingGallery: false,
-  // gallery: [],
+  fetchingGallery: false,
+  gallery: [],
 }
 
 const reducer = (state = initialState, action) => {
