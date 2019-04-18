@@ -4,6 +4,7 @@ import { Fade, Card, Label, CardImg, CardHeader, CardFooter, CustomInput } from 
 export default props => {
   return props.styleImages.map(img => 
       <Fade key={img.id}>
+      {console.log(img)}
         <Card
           className='rounded-lg'
         >
@@ -24,7 +25,7 @@ export default props => {
               bottom
               id={img.id}
               width='100%'
-              src={`${props.baseURL}/styles/${img.imageUrl}`}
+              src={`${props.baseURL}/styles/${img.image_url}`}
               alt={img.title}
               style={props.submitting ? {filter: 'grayscale(40%)'} : null}
             />
