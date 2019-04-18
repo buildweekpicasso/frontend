@@ -120,7 +120,7 @@ export const FETCH_REQUEST_SUCCESS = 'FETCH_REQUEST_SUCCESS';
 export const FETCH_REQUEST_FAILURE = 'FETCH_REQUEST_FAILURE';
 export const fetchRequest = key => dispatch => {
   dispatch({ type: FETCH_REQUEST_START });
-  return axios.get(`${testURL}/request/${key}`)
+  return axios.get(`${testURL}/images/public/${key}`)
     .then(res => {
       console.log(res.data);
       dispatch({

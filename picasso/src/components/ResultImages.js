@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row, CardImg } from 'reactstrap';
+import { Col, Row, Fade, CardImg } from 'reactstrap';
 import SocialSharing from './SocialSharing';
 
 export default class ResultImages extends React.Component {
@@ -27,11 +27,13 @@ export default class ResultImages extends React.Component {
         <Row>
           <Col>
             <a href={this.props.resultImages.output_url} target="_blank" rel="noopener noreferrer">
-              <CardImg
-                src={this.props.resultImages.output_url}
-                alt=""
-                style={{width: '100%'}}
-              />
+              <Fade>
+                <CardImg
+                  src={this.props.resultImages.output_url}
+                  alt=""
+                  style={{width: '100%'}}
+                />
+              </Fade>
             </a>
           </Col>
         </Row>
@@ -39,21 +41,25 @@ export default class ResultImages extends React.Component {
           <Col sm="6">
             <h4 className='mt-3'>Content Image</h4>
             <a href={this.props.resultImages.content_url} target="_blank" rel="noopener noreferrer">
-              <CardImg
-                src={this.props.resultImages.content_url}
-                alt="Content"
-                style={{width: '100%'}}
-              />
+              <Fade>
+                <CardImg
+                  src={this.props.resultImages.content_url}
+                  alt="Content"
+                  style={{width: '100%'}}
+                />
+              </Fade>
             </a>
           </Col>
           <Col sm="6">
             <h4 className='mt-3'>Style Image</h4>
             <a href={this.props.resultImages.style_url} target="_blank" rel="noopener noreferrer">
-              <CardImg
-                src={this.props.resultImages.style_url}
-                alt="Style"
-                style={{width: '100%'}}
-              />
+              <Fade>
+                <CardImg
+                  src={this.props.resultImages.style_url}
+                  alt="Style"
+                  style={{width: '100%'}}
+                />
+              </Fade>
             </a>
           </Col>
         </Row>

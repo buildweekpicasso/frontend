@@ -1,8 +1,9 @@
 import React from 'react';
-import { Collapse, Alert, Form, FormGroup, Label, CustomInput, ButtonGroup, Button, Media, CardColumns, Row, Spinner } from 'reactstrap';
+import { Form, FormGroup, Label, CustomInput, ButtonGroup, Button, CardColumns, Row, Spinner } from 'reactstrap';
 
 import StyleImages from './StyleImages';
 import FormAlert from './FormAlert';
+import UploadPreview from './UploadPreview';
 
 export default class PayloadForm extends React.Component {
   constructor(props) {
@@ -82,11 +83,6 @@ export default class PayloadForm extends React.Component {
           color='primary'
           text="Your request is now processing. An email with your processed image will be sent to the address associated with this account."
         />
-        {/* <Collapse isOpen={this.props.processDeep}>
-          <Alert color="primary" isOpen={this.props.processDeep}>
-            Your request is now processing. An email with your processed image will be sent to the address associated with this account.
-          </Alert>
-        </Collapse> */}
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
             <Row className='justify-content-between align-items-center' style={{padding: '0 1em'}}>
@@ -98,7 +94,6 @@ export default class PayloadForm extends React.Component {
                 type='submit'
                 disabled={noSubmit}
                 color='warning'
-                // color={noSubmit ? 'secondary' : 'primary'}
                 title='You must select a method, a style, and an image to process before submitting'
               >
                 { !this.props.submittingPayload
@@ -144,20 +139,10 @@ export default class PayloadForm extends React.Component {
               onChange={this.handleUploadChange}
             />
             { this.state.formData.contentImg !== null
-                && <Media className='mt-3'>
-                    <Media left middle
-                      href={this.state.previewImg}
-                      target='_blank'
-                    >
-                      <Media object className='mr-3 img-thumbnail' src={this.state.previewImg} alt='Click to view full size image' style={{maxWidth: '200px', backgroundColor: 'white'}} />
-                    </Media>
-                    <Media className='align-self-center'>
-                      <Media body>
-                        {this.state.formData.contentImg !== null
-                            && this.state.formData.contentImg.name}
-                      </Media>
-                    </Media>
-                  </Media>
+                && <UploadPreview
+                      previewImg={this.state.previewImg}
+                      contentImg={this.state.formData.contentImg}
+                    />
           }
           </FormGroup>
           <FormGroup check style={{paddingLeft: '0'}}>

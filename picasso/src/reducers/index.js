@@ -103,6 +103,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: '',
         submittingPayload: true,
+        processDeep: false,
       }
     case SUBMIT_PAYLOAD_SUCCESS:
       return {
