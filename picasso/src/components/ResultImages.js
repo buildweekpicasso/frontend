@@ -13,11 +13,14 @@ export default class ResultImages extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.fetchRequest(this.props.match.params.key);
+    this.props.resultImages.request_key !== this.props.match.params.key
+      && this.props.fetchRequest(this.props.match.params.key);
   }
 
   render() {
-    if(this.props.resultImages.request_key === null) { return <h3 style={{textAlign: 'center'}}>You have no recent results</h3>}
+    if(this.props.resultImages.request_key === null) {
+      return <h3 style={{textAlign: 'center'}}>You have no recent results</h3>
+    }
     return (
       <div>
         <Row className='justify-content-between' style={{padding: '1em'}}>

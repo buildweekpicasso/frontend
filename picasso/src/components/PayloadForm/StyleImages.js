@@ -4,7 +4,6 @@ import { Fade, Card, Label, CardImg, CardHeader, CardFooter, CustomInput } from 
 export default props => {
   return props.styleImages.map(img => 
       <Fade key={img.id}>
-      {console.log(img)}
         <Card
           className='rounded-lg'
         >

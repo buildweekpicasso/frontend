@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Navbar from './components/Navbar/Navbar';
@@ -39,7 +39,7 @@ class App extends Component {
             )}
           />
           <Route
-            path='/result/:key'
+            exact path='/result/:key'
             render={props => (
               <ResultImages
                 {...props}

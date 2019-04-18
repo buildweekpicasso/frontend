@@ -42,6 +42,9 @@ export default class Navbar extends React.Component {
               <NavItem>
                 <NavLinkRS exact to="/" tag={NavLink}>Image Request</NavLinkRS>
               </NavItem>
+              <NavItem>
+                  <NavLinkRS exact to="/result" tag={NavLink}>Result (debug)</NavLinkRS>
+              </NavItem>
               {/* <NavItem>
                 <NavLinkRS to='/gallery' tag={NavLink}>Gallery</NavLinkRS>
               </NavItem> */}
