@@ -35,7 +35,7 @@ const initialState = {
     style_url: null,
     request_key: null,
   },
-  deepProcess: false,
+  processDeep: false,
   fetchingRequest: false,
   // fetchingGallery: false,
   // gallery: [],
@@ -122,20 +122,20 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: '',
         submittingPayload: true,
-        deepProcess: false,
+        processDeep: false,
       }
     case SUBMIT_DEEP_PAYLOAD_SUCCESS:
       return {
         ...state,
         error: '',
         submittingPayload: false,
-        deepProcess: true,
+        processDeep: true,
       }
     case SUBMIT_DEEP_PAYLOAD_FAILURE:
       return {
         ...state,
         error: action.payload,
-        deepProcess: false,
+        processDeep: false,
         submittingPayload: false,
       }
     case FETCH_REQUEST_START:

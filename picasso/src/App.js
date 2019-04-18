@@ -34,7 +34,7 @@ class App extends Component {
                 submitDeepPayload={this.props.submitDeepPayload}
                 submittingPayload={this.props.submittingPayload}
                 resultImages={this.props.resultImages}
-                deepProcess={this.props.deepProcess}
+                processDeep={this.props.processDeep}
               />
             )}
           />
@@ -97,7 +97,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ error, loggingIn, signingUp, fetchingStyles, styleImages, submittingPayload, resultImages, deepProcess, fetchingRequest }) => ({ error, loggingIn, signingUp, fetchingStyles, styleImages, submittingPayload, resultImages, deepProcess, fetchingRequest })
+const mapStateToProps = ({ error, loggingIn, signingUp, fetchingStyles, styleImages, submittingPayload, resultImages, processDeep, fetchingRequest }) => ({ error, loggingIn, signingUp, fetchingStyles, styleImages, submittingPayload, resultImages, processDeep, fetchingRequest })
 
 export default connect(
   mapStateToProps,

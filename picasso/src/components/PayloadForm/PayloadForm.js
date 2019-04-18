@@ -1,7 +1,8 @@
 import React from 'react';
-import { Alert, Form, FormGroup, Label, CustomInput, ButtonGroup, Button, Media, CardColumns, Row, Spinner } from 'reactstrap';
+import { Collapse, Alert, Form, FormGroup, Label, CustomInput, ButtonGroup, Button, Media, CardColumns, Row, Spinner } from 'reactstrap';
 
 import StyleImages from './StyleImages';
+import FormAlert from './FormAlert';
 
 export default class PayloadForm extends React.Component {
   constructor(props) {
@@ -76,9 +77,16 @@ export default class PayloadForm extends React.Component {
 
     return (
       <div className="PayloadForm">
-        <Alert color="primary" isOpen={this.props.deepProcess}>
-          Your request is now processing. An email with your processed image will be sent to the address associated with this account.
-        </Alert>
+        <FormAlert
+          isOpen={this.props.processDeep}
+          color='primary'
+          text="Your request is now processing. An email with your processed image will be sent to the address associated with this account."
+        />
+        {/* <Collapse isOpen={this.props.processDeep}>
+          <Alert color="primary" isOpen={this.props.processDeep}>
+            Your request is now processing. An email with your processed image will be sent to the address associated with this account.
+          </Alert>
+        </Collapse> */}
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
             <Row className='justify-content-between align-items-center' style={{padding: '0 1em'}}>
