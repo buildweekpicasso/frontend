@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-import './App.scss';
+import { Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import Navbar from './components/Navbar/Navbar';
 import PrivateRoute from './components/PrivateRoute';
 import Login from './components/Login/Login';
 import Logout from './components/Navbar/Logout';
 import Private from './components/Private';
 import PayloadForm from './components/PayloadForm/PayloadForm';
+import ResultImages from './components/ResultImages';
+import Gallery from './components/Gallery';
+
+import { baseURL, testURL, fetchStyleImages, submitPayload, login, signup, fetchRequest, fetchGallery } from './actions';
 
 class App extends Component {
   render() {
@@ -16,19 +21,73 @@ class App extends Component {
         <div className="container">
           <Route
             exact path='/'
-            component={PayloadForm}
+            render={props => (
+              <PayloadForm
+                {...props}
+                error={this.props.error}
+                baseURL={baseURL}
+                testURL={testURL}
+                fetchStyleImages={this.props.fetchStyleImages}
+                fetchingStyles={this.props.fetchingStyles}
+                styleImages={this.props.styleImages}
+                submitPayload={this.props.submitPayload}
+                submitDeepPayload={this.props.submitDeepPayload}
+                submittingPayload={this.props.submittingPayload}
+                resultImages={this.props.resultImages}
+                processDeep={this.props.processDeep}
+              />
+            )}
+          />
+          <Route
+            exact path='/result/:key'
+            render={props => (
+              <ResultImages
+                {...props}
+                error={this.props.error}
+                resultImages={this.props.resultImages}
+                fetchRequest={this.props.fetchRequest}
+                fetchingRequest={this.props.fetchingRequest}
+                testURL={testURL}
+              />
+            )}
+          />
+          <Route
+            path='/gallery'
+            render={props => (
+              <Gallery
+                {...props}
+                error={this.props.error}
+                fetchGallery={this.props.fetchGallery}
+                fetchingGallery={this.props.fetchingGallery}
+                gallery={this.props.gallery}
+              />
+            )}
           />
           <Route
             path='/login'
-            component={Login}
+            render={props => (
+              <Login
+                {...props}
+                error={this.props.error}
+                login={this.props.login}
+                loggingIn={this.props.loggingIn}
+              />
+            )}
           />
           <Route
             path='/logout'
-            component={Logout}
+            render={props => (<Logout {...props} />)}
           />
           <Route
             path='/signup'
-            component={Login}
+            render={props => (
+              <Login
+                {...props}
+                error={this.props.error}
+                signup={this.props.signup}
+                signingUp={this.props.signingUp}
+              />
+            )}
           />
           <PrivateRoute
             exact path='/private'
@@ -40,4 +99,9 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = ({ error, loggingIn, signingUp, fetchingStyles, styleImages, submittingPayload, resultImages, processDeep, fetchingRequest, fetchingGallery, gallery }) => ({ error, loggingIn, signingUp, fetchingStyles, styleImages, submittingPayload, resultImages, processDeep, fetchingRequest, fetchingGallery, gallery })
+
+export default connect(
+  mapStateToProps,
+  { fetchStyleImages, submitPayload, login, signup, fetchRequest, fetchGallery }
+)(App);

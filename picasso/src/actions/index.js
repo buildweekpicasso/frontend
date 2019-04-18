@@ -11,7 +11,6 @@ export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
   return axios.post(`${baseURL}/auth/login`, creds)
     .then(res => {
-      console.log(res);
       localStorage.setItem('token', res.data.token);
       dispatch({
         type: LOGIN_SUCCESS,
@@ -34,7 +33,6 @@ export const signup = creds => dispatch => {
   dispatch({ type: SIGNUP_START });
   return axios.post(`${baseURL}/auth/register`, creds)
     .then(res => {
-      console.log(res);
       localStorage.setItem('token', res.data.token);
       dispatch({
         type: SIGNUP_SUCCESS,
@@ -78,7 +76,6 @@ export const submitPayload = formData => dispatch => {
   dispatch({ type: SUBMIT_PAYLOAD_START });
   return axios.post(`${testURL}/images/process/`, formData)
     .then(res => {
-      console.log(res.data)
       dispatch({
         type: SUBMIT_PAYLOAD_SUCCESS,
         payload: res.data,
@@ -91,4 +88,67 @@ export const submitPayload = formData => dispatch => {
         payload: err.response,
       })
     });
+}
+
+export const SUBMIT_DEEP_PAYLOAD_START = 'SUBMIT_DEEP_PAYLOAD_START';
+export const SUBMIT_DEEP_PAYLOAD_SUCCESS = 'SUBMIT_DEEP_PAYLOAD_SUCCESS';
+export const SUBMIT_DEEP_PAYLOAD_FAILURE = 'SUBMIT_DEEP_PAYLOAD_FAILURE';
+export const submitDeepPayload = formData => dispatch => {
+  dispatch({ type: SUBMIT_DEEP_PAYLOAD_START });
+  return axiosAuth().post(`${testURL}/images/process-deep/`, formData)
+    .then(res => {
+      dispatch({
+        type: SUBMIT_DEEP_PAYLOAD_SUCCESS,
+        payload: res.data,
+      })
+    })
+    .catch(err => {
+      console.log(err.response);
+      dispatch({
+        type: SUBMIT_DEEP_PAYLOAD_FAILURE,
+        payload: err.response,
+      })
+    });
+}
+
+export const FETCH_REQUEST_START = 'FETCH_REQUEST_START';
+export const FETCH_REQUEST_SUCCESS = 'FETCH_REQUEST_SUCCESS';
+export const FETCH_REQUEST_FAILURE = 'FETCH_REQUEST_FAILURE';
+export const fetchRequest = key => dispatch => {
+  dispatch({ type: FETCH_REQUEST_START });
+  return axios.get(`${testURL}/images/public/${key}`)
+    .then(res => {
+      dispatch({
+        type: FETCH_REQUEST_SUCCESS,
+        payload: res.data,
+      })
+    })
+    .catch(err => {
+      console.log(err.response);
+      dispatch({
+        type: FETCH_REQUEST_FAILURE,
+        payload: err.response
+      })
+    })
+}
+
+export const FETCH_GALLERY_START = 'FETCH_GALLERY_START';
+export const FETCH_GALLERY_SUCCESS = 'FETCH_GALLERY_SUCCESS';
+export const FETCH_GALLERY_FAILURE = 'FETCH_GALLERY_FAILURE';
+export const fetchGallery = () => dispatch => {
+  dispatch({ type: FETCH_GALLERY_START });
+  return axios.get(`${testURL}/images/public`)
+    .then(res => {
+      dispatch({
+        type: FETCH_GALLERY_SUCCESS,
+        payload: res.data,
+      })
+    })
+    .catch(err => {
+      console.log(err.response);
+      dispatch({
+        type: FETCH_GALLERY_FAILURE,
+        payload: err.response
+      })
+    })
 }

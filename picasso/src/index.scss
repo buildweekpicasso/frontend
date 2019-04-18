@@ -2,6 +2,7 @@ $body-bg: #EEEEEE;
 $body-color: #2B2B2B;
 $dark: #112233;
 $primary: #336677;
+$warning: #AA2233;
 $enable-responsive-font-sizes: true;
 
 @import '~bootstrap/scss/bootstrap';
@@ -33,6 +34,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .container {
   margin-top: 80px;
+  min-height: 100vh;
 
   @media (max-width: 335px) {
     margin-top: 120px

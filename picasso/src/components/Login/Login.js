@@ -1,11 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button, Spinner } from 'reactstrap';
 import './Login.scss';
-import { login, signup } from '../../actions';
 
-class Login extends React.Component {
+export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,15 +25,14 @@ class Login extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.props.location.pathname === '/login');
     this.props.location.pathname === '/login'
       ? this.props.login(this.state.creds)
           .then(() => {
-            this.props.history.push('/private');
+            this.props.history.push('/');
           })
       : this.props.signup(this.state.creds)
           .then(() => {
-            this.props.history.push('/private');
+            this.props.history.push('/');
           });
     this.setState({
       creds: {
@@ -84,8 +81,12 @@ class Login extends React.Component {
           >
             {
               this.props.location.pathname === '/login'
-                ? 'Log In'
-                : 'Sign Up'
+                ? !this.props.loggingIn
+                  ? 'Log In'
+                  : <Spinner size='sm' color='dark' />
+                : !this.props.signingIn
+                  ? 'Sign Up'
+                  : <Spinner size='sm' color='dark' />
             }
           </Button>
         </Form>
@@ -93,12 +94,3 @@ class Login extends React.Component {
     );
   }
 }
-
-const mapStateToProps = ({ loggingIn, signingUp }) => ({
-  loggingIn, signingUp
-});
-
-export default connect(
-  mapStateToProps,
-  { login, signup }
-)(Login);

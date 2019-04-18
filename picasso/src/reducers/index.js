@@ -11,6 +11,15 @@ import {
   SUBMIT_PAYLOAD_START,
   SUBMIT_PAYLOAD_SUCCESS,
   SUBMIT_PAYLOAD_FAILURE,
+  SUBMIT_DEEP_PAYLOAD_START,
+  SUBMIT_DEEP_PAYLOAD_SUCCESS,
+  SUBMIT_DEEP_PAYLOAD_FAILURE,
+  FETCH_REQUEST_START,
+  FETCH_REQUEST_SUCCESS,
+  FETCH_REQUEST_FAILURE,
+  FETCH_GALLERY_START,
+  FETCH_GALLERY_SUCCESS,
+  FETCH_GALLERY_FAILURE,
 } from '../actions';
 
 const initialState = {
@@ -24,7 +33,12 @@ const initialState = {
     output_url: null,
     content_url: null,
     style_url: null,
+    request_key: null,
   },
+  processDeep: false,
+  fetchingRequest: false,
+  fetchingGallery: false,
+  gallery: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -89,6 +103,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: '',
         submittingPayload: true,
+        processDeep: false,
       }
     case SUBMIT_PAYLOAD_SUCCESS:
       return {
@@ -102,6 +117,65 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
         submittingPayload: false,
+      }
+      case SUBMIT_DEEP_PAYLOAD_START:
+      return {
+        ...state,
+        error: '',
+        submittingPayload: true,
+        processDeep: false,
+      }
+    case SUBMIT_DEEP_PAYLOAD_SUCCESS:
+      return {
+        ...state,
+        error: '',
+        submittingPayload: false,
+        processDeep: true,
+      }
+    case SUBMIT_DEEP_PAYLOAD_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        processDeep: false,
+        submittingPayload: false,
+      }
+    case FETCH_REQUEST_START:
+      return {
+        ...state,
+        error: '',
+        fetchingRequest: true,
+      }
+    case FETCH_REQUEST_SUCCESS:
+      return {
+        ...state,
+        error: '',
+        fetchingRequest: false,
+        resultImages: action.payload,
+      }
+    case FETCH_REQUEST_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        fetchingRequest: false,
+      }
+    case FETCH_GALLERY_START:
+      return {
+        ...state,
+        error: '',
+        fetchingGallery: true,
+      }
+    case FETCH_GALLERY_SUCCESS:
+      return {
+        ...state,
+        error: '',
+        fetchingGallery: false,
+        gallery: action.payload,
+      }
+    case FETCH_GALLERY_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        fetchingGallery: false,
       }
     default:
       return state;
