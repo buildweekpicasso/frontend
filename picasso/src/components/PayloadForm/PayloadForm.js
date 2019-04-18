@@ -73,7 +73,8 @@ export default class PayloadForm extends React.Component {
   }
 
   render() {
-    const noSubmit = this.state.formData.contentImg === null || this.state.formData.styleID === null || this.state.method === null;
+    const submitting = this.props.submittingPayload;
+    const noSubmit = submitting || this.state.formData.contentImg === null || this.state.formData.styleID === null || this.state.method === null;
     const hasToken = localStorage.getItem('token');
 
     return (
@@ -87,8 +88,11 @@ export default class PayloadForm extends React.Component {
           <FormGroup>
             <Row className='justify-content-between align-items-center' style={{padding: '0 1em'}}>
               <h3>
-                <span className="spanIB">Choose an Image</span>{` `}
-                <span className="spanIB">and Style</span>
+                { submitting
+                    ? 'Submitting...'
+                    : 'Choose an Image and Style'
+                }
+                
               </h3>
               <Button
                 type='submit'
@@ -96,7 +100,7 @@ export default class PayloadForm extends React.Component {
                 color='warning'
                 title='You must select a method, a style, and an image to process before submitting'
               >
-                { !this.props.submittingPayload
+                { !submitting
                     ? 'Submit'
                     : <Spinner size='sm' color='light' />
                 }
@@ -111,6 +115,7 @@ export default class PayloadForm extends React.Component {
                 onClick={this.handleMethodSelect}
                 color='primary'
                 active={this.state.method === 'method1'}
+                disabled={submitting}
               >
                 Faster (on site)
               </Button>
@@ -118,7 +123,7 @@ export default class PayloadForm extends React.Component {
                 id='method2'
                 onClick={this.handleMethodSelect}
                 color={hasToken ? 'primary' : 'secondary' }
-                disabled={!hasToken}
+                disabled={!hasToken || submitting}
                 active={this.state.method === 'method2'}
                 title='You must be logged in to select this option'
               >
@@ -137,6 +142,7 @@ export default class PayloadForm extends React.Component {
                 ? "Choose a different image"
                 : "Choose your image"}
               onChange={this.handleUploadChange}
+              disabled={submitting}
             />
             <Collapse isOpen={this.state.formData.contentImg !==null}>
               <UploadPreview
@@ -159,6 +165,7 @@ export default class PayloadForm extends React.Component {
                       styleImages={this.props.styleImages}
                       baseURL={this.props.testURL}
                       handleStyleSelect={this.handleStyleSelect}
+                      submitting={submitting}
                     />
                   </CardColumns>
                 : <div style={{ textAlign: 'center', width: '100%', height: '100%' }}>

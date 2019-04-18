@@ -4,7 +4,9 @@ import { Fade, Card, Label, CardImg, CardHeader, CardFooter, CustomInput } from 
 export default props => {
   return props.styleImages.map(img => 
       <Fade key={img.id}>
-        <Card className='rounded-lg'>
+        <Card
+          className='rounded-lg'
+        >
           <Label className='StyleImage' style={{width: '100%'}} check>
             <CardHeader>
               <CustomInput
@@ -15,6 +17,7 @@ export default props => {
                   value={img.id}
                   name="style-select"
                   label={props.activeStyle === `${img.id}` ? "Current selection" : "Select this style"}
+                  disabled={props.submitting}
                 />
             </CardHeader>
             <CardImg
@@ -23,6 +26,7 @@ export default props => {
               width='100%'
               src={`${props.baseURL}/styles/${img.imageUrl}`}
               alt={img.title}
+              style={props.submitting ? {filter: 'grayscale(40%)'} : null}
             />
             <CardFooter>
               <p>
