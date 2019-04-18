@@ -170,7 +170,6 @@ export default class PayloadForm extends React.Component {
                     <Spinner size='xl' color='dark' style={{ height: '3em', width: '3em' }} />
                   </div>
             }
-            
           </FormGroup>
         </Form>
       </div>

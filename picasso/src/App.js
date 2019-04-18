@@ -57,7 +57,7 @@ class App extends Component {
                 {...props}
                 error={this.props.error}
                 fetchGallery={this.props.fetchGallery}
-                fetchingGallery={this.props.fetchGallery}
+                fetchingGallery={this.props.fetchingGallery}
                 gallery={this.props.gallery}
               />
             )}
