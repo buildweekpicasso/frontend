@@ -9,8 +9,9 @@ import Logout from './components/Navbar/Logout';
 import Private from './components/Private';
 import PayloadForm from './components/PayloadForm/PayloadForm';
 import ResultImages from './components/ResultImages';
+// import Gallery from './components/Gallery';
 
-import { baseURL, testURL, fetchStyleImages, submitPayload, login, signup } from './actions';
+import { baseURL, testURL, fetchStyleImages, submitPayload, login, signup, fetchRequest } from './actions';
 
 class App extends Component {
   render() {
@@ -44,9 +45,22 @@ class App extends Component {
                 {...props}
                 error={this.props.error}
                 resultImages={this.props.resultImages}
+                fetchRequest={this.props.fetchRequest}
+                fetchingRequest={this.props.fetchingRequest}
               />
             )}
           />
+          {/* <Route
+            path='/gallery'
+            render={props => (
+              <Gallery
+                {...props}
+                error={this.props.error}
+                fetchGallery={this.props.fetchGallery}
+                fetchingGallery={this.props.fetchGallery}
+              />
+            )}
+          /> */}
           <Route
             path='/login'
             render={props => (
@@ -83,9 +97,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ error, loggingIn, signingUp, fetchingStyles, styleImages, submittingPayload, resultImages, deepProcess }) => ({ error, loggingIn, signingUp, fetchingStyles, styleImages, submittingPayload, resultImages, deepProcess })
+const mapStateToProps = ({ error, loggingIn, signingUp, fetchingStyles, styleImages, submittingPayload, resultImages, deepProcess, fetchingRequest }) => ({ error, loggingIn, signingUp, fetchingStyles, styleImages, submittingPayload, resultImages, deepProcess, fetchingRequest })
 
 export default connect(
   mapStateToProps,
-  { fetchStyleImages, submitPayload, login, signup }
+  { fetchStyleImages, submitPayload, login, signup, fetchRequest }
 )(App);
