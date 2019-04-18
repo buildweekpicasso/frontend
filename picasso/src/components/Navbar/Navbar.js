@@ -24,7 +24,7 @@ export default class Navbar extends React.Component {
   }
 
   render() {
-    const haveToken = localStorage.getItem('token');
+    const hasToken = localStorage.getItem('token');
     return (
       <div>
         <NavbarRS fixed="top" color="dark" dark expand="md">
@@ -32,7 +32,7 @@ export default class Navbar extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-            {haveToken
+            {hasToken
                 && (
                   <NavItem>
                     <NavLinkRS to="/private" tag={NavLink}>Private</NavLinkRS>
@@ -42,7 +42,7 @@ export default class Navbar extends React.Component {
               <NavItem>
                 <NavLinkRS exact to="/" tag={NavLink}>Image Request</NavLinkRS>
               </NavItem>
-              {!haveToken
+              {!hasToken
                 ? (
                   <>
                   <NavItem>

@@ -98,7 +98,7 @@ export const SUBMIT_DEEP_PAYLOAD_SUCCESS = 'SUBMIT_DEEP_PAYLOAD_SUCCESS';
 export const SUBMIT_DEEP_PAYLOAD_FAILURE = 'SUBMIT_DEEP_PAYLOAD_FAILURE';
 export const submitDeepPayload = formData => dispatch => {
   dispatch({ type: SUBMIT_DEEP_PAYLOAD_START });
-  return axiosAuth().post(`${testURL}/images/process/`, formData)
+  return axiosAuth().post(`${testURL}/images/process-deep/`, formData)
     .then(res => {
       console.log(res.data)
       dispatch({
@@ -113,4 +113,26 @@ export const submitDeepPayload = formData => dispatch => {
         payload: err.response,
       })
     });
+}
+
+export const FETCH_REQUEST_START = 'FETCH_REQUEST_START';
+export const FETCH_REQUEST_SUCCESS = 'FETCH_REQUEST_SUCCESS';
+export const FETCH_REQUEST_FAILURE = 'FETCH_REQUEST_FAILURE';
+export const fetchRequest = key => dispatch => {
+  dispatch({ type: FETCH_REQUEST_START });
+  return axios.get(`${testURL}/request/${key}`)
+    .then(res => {
+      console.log(res.data);
+      dispatch({
+        type: FETCH_REQUEST_SUCCESS,
+        payload: res.data,
+      })
+    })
+    .catch(err => {
+      console.log(err.response);
+      dispatch({
+        type: FETCH_REQUEST_FAILURE,
+        payload: err.response
+      })
+    })
 }

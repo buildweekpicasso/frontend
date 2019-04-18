@@ -14,6 +14,9 @@ import {
   SUBMIT_DEEP_PAYLOAD_START,
   SUBMIT_DEEP_PAYLOAD_SUCCESS,
   SUBMIT_DEEP_PAYLOAD_FAILURE,
+  FETCH_REQUEST_START,
+  FETCH_REQUEST_SUCCESS,
+  FETCH_REQUEST_FAILURE,
 } from '../actions';
 
 const initialState = {
@@ -30,6 +33,7 @@ const initialState = {
     request_key: null,
   },
   deepProcess: false,
+  fetchingRequest: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -128,6 +132,25 @@ const reducer = (state = initialState, action) => {
         error: action.payload,
         deepProcess: false,
         submittingPayload: false,
+      }
+    case FETCH_REQUEST_START:
+      return {
+        ...state,
+        error: '',
+        fetchingRequest: true,
+      }
+    case FETCH_REQUEST_SUCCESS:
+      return {
+        ...state,
+        error: '',
+        fetchingRequest: false,
+        resultImages: action.payload,
+      }
+    case FETCH_REQUEST_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        fetchingRequest: false,
       }
     default:
       return state;

@@ -71,8 +71,7 @@ export default class PayloadForm extends React.Component {
 
   render() {
     const noSubmit = this.state.formData.contentImg === null || this.state.formData.styleID === null || this.state.method === null;
-    const haveToken = localStorage.getItem('token');
-    console.log('deepProcess',this.props.deepProcess)
+    const hasToken = localStorage.getItem('token');
 
     return (
       <div className="PayloadForm">
@@ -114,8 +113,8 @@ export default class PayloadForm extends React.Component {
               <Button
                 id='method2'
                 onClick={this.handleMethodSelect}
-                color={haveToken ? 'primary' : 'secondary' }
-                disabled={!haveToken}
+                color={hasToken ? 'primary' : 'secondary' }
+                disabled={!hasToken}
                 active={this.state.method === 'method2'}
                 title='You must be logged in to select this option'
               >

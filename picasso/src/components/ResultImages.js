@@ -12,9 +12,7 @@ export default class ResultImages extends React.Component {
   }
 
   componentDidMount() {
-    // !this.props.styleImages.length
-      // && this.props.fetchStyleImages();
-    const key = this.props.match.params.key;
+    // this.props.fetchRequest(this.props.match.params.key);
   }
 
   render() {

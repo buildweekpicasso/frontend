@@ -13,12 +13,7 @@ import ResultImages from './components/ResultImages';
 import { baseURL, testURL, fetchStyleImages, submitPayload, login, signup } from './actions';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    console.log(this.props)
     return (
       <div className="App">
         <Navbar />
