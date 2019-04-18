@@ -1,3 +1,7 @@
-React goes here
+# Picasso Painted It | Front End
 
-Deployed at: https://picasso-frontend.netlify.com/
+**Live Site:** <https://picasso-frontend.netlify.com/>
+
+## Front End Architect | Matt Poloni
+
+{...moreStuff}
