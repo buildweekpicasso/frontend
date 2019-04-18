@@ -17,8 +17,6 @@ export default class Gallery extends React.Component {
           <SocialSharing />
         </Row>
         <Row>
-          {/* <Col>
-          </Col> */}
           <CardColumns>
             {this.props.gallery.map((img, i) =>
               <Fade key={i}>
@@ -26,7 +24,6 @@ export default class Gallery extends React.Component {
                   <a href={img.output_url} target="_blank" rel="noopener noreferrer">
                     <CardImg
                       id={img.request_key}
-                      // className='rounded-lg'
                       src={img.output_url}
                       alt=''
                     />

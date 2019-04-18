@@ -1,17 +1,8 @@
 import React from 'react';
-import { Col, Row, Fade, CardImg } from 'reactstrap';
+import { Col, Row, Fade, Card, CardImg } from 'reactstrap';
 import SocialSharing from './SocialSharing';
 
 export default class ResultImages extends React.Component {
-  constructor(props) {
-    super(props);
-    // this.state = {
-    //   output_url: null,
-    //   content_url: null,
-    //   style_url: null,
-    // }
-  }
-
   componentDidMount() {
     this.props.resultImages.request_key !== this.props.match.params.key
       && this.props.fetchRequest(this.props.match.params.key);
@@ -22,7 +13,7 @@ export default class ResultImages extends React.Component {
       return <h3 style={{textAlign: 'center'}}>You have no recent results</h3>
     }
     return (
-      <div>
+      <div className='mb-3'>
         <Row className='justify-content-between' style={{padding: '1em'}}>
           <h3 style={{display: 'inline'}}>Result</h3>{` `}
           <SocialSharing output_url={this.props.resultImages.output_url} />
@@ -31,11 +22,13 @@ export default class ResultImages extends React.Component {
           <Col>
             <a href={this.props.resultImages.output_url} target="_blank" rel="noopener noreferrer">
               <Fade>
-                <CardImg
-                  src={this.props.resultImages.output_url}
-                  alt=""
-                  style={{width: '100%'}}
-                />
+                <Card>
+                  <CardImg
+                    src={this.props.resultImages.output_url}
+                    alt=""
+                    style={{width: '100%'}}
+                  />
+                </Card>
               </Fade>
             </a>
           </Col>

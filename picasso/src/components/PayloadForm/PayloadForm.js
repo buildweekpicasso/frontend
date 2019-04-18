@@ -55,12 +55,8 @@ export default class PayloadForm extends React.Component {
     formData.append('styleID', this.state.formData.styleID);
     this.state.method === 'method1'
       ? this.props.submitPayload(formData)
-          // .then(() => {
           .then(() => {
-
             !this.props.error &&
-            //    this.props.history.push('/result/0');
-
             this.props.history.push(`/result/${this.props.resultImages.request_key}`)
           })
       : this.state.method === 'method2'
