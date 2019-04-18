@@ -3,7 +3,6 @@ import { Collapse, Fade, Media } from 'reactstrap';
 
 export default props => {
   return (
-    <Collapse isOpen={}>
       <Fade>
         <Media className='mt-3'>
           <Media left middle
@@ -20,6 +19,5 @@ export default props => {
           </Media>
         </Media>
       </Fade>
-    </Collapse>
   )
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FormGroup, Label, CustomInput, ButtonGroup, Button, CardColumns, Row, Spinner } from 'reactstrap';
+import { Form, FormGroup, Label, CustomInput, ButtonGroup, Button, Collapse, CardColumns, Row, Spinner } from 'reactstrap';
 
 import StyleImages from './StyleImages';
 import FormAlert from './FormAlert';
@@ -138,12 +138,12 @@ export default class PayloadForm extends React.Component {
                 : "Choose your image"}
               onChange={this.handleUploadChange}
             />
-            { this.state.formData.contentImg !== null
-                && <UploadPreview
-                      previewImg={this.state.previewImg}
-                      contentImg={this.state.formData.contentImg}
-                    />
-          }
+            <Collapse isOpen={this.state.formData.contentImg !==null}>
+              <UploadPreview
+                previewImg={this.state.previewImg}
+                contentImg={this.state.formData.contentImg}
+              />
+            </Collapse>
           </FormGroup>
           <FormGroup check style={{paddingLeft: '0'}}>
             <legend>
