@@ -14,7 +14,7 @@ export default props => {
                   id={img.id}
                   value={img.id}
                   name="style-select"
-                  label="Select this style"
+                  label={props.activeStyle === `${img.id}` ? "Current selection" : "Select this style"}
                 />
             </CardHeader>
             <CardImg
