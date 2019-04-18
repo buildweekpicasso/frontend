@@ -54,9 +54,10 @@ export default class PayloadForm extends React.Component {
     this.state.method === 'method1'
       ? this.props.submitPayload(formData)
           .then(() => {
-            // console.log('WHAT THE HELL?!');
+            // .then(res => {
             !this.props.error
               && this.props.history.push('/result/0');
+            // this.props.history.push(`/result/${res.data.request_key}`)
           })
       : this.state.method === 'method2'
           && this.props.submitDeepPayload(formData);
