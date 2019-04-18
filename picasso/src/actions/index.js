@@ -144,7 +144,6 @@ export const fetchGallery = () => dispatch => {
   dispatch({ type: FETCH_GALLERY_START });
   return axios.get(`${testURL}/images/public`)
     .then(res => {
-      console.log('action',res.data);
       dispatch({
         type: FETCH_GALLERY_SUCCESS,
         payload: res.data,
