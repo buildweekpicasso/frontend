@@ -47,6 +47,7 @@ class App extends Component {
                 resultImages={this.props.resultImages}
                 fetchRequest={this.props.fetchRequest}
                 fetchingRequest={this.props.fetchingRequest}
+                testURL={testURL}
               />
             )}
           />

@@ -4,8 +4,7 @@ import SocialSharing from './SocialSharing';
 
 export default class ResultImages extends React.Component {
   componentDidMount() {
-    this.props.resultImages.request_key !== this.props.match.params.key
-      && this.props.fetchRequest(this.props.match.params.key);
+    this.props.fetchRequest(this.props.match.params.key);
   }
 
   render() {
@@ -48,10 +47,10 @@ export default class ResultImages extends React.Component {
           </Col>
           <Col sm="6">
             <h4 className='mt-3'>Style Image</h4>
-            <a href={this.props.resultImages.style_url} target="_blank" rel="noopener noreferrer">
+            <a href={`${this.props.testURL}/styles/${this.props.resultImages.style_url}`} target="_blank" rel="noopener noreferrer">
               <Fade>
                 <CardImg
-                  src={this.props.resultImages.style_url}
+                  src={`${this.props.testURL}/styles/${this.props.resultImages.style_url}`}
                   alt="Style"
                   style={{width: '100%'}}
                 />

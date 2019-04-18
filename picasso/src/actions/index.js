@@ -11,7 +11,6 @@ export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
   return axios.post(`${baseURL}/auth/login`, creds)
     .then(res => {
-      console.log(res);
       localStorage.setItem('token', res.data.token);
       dispatch({
         type: LOGIN_SUCCESS,
@@ -34,7 +33,6 @@ export const signup = creds => dispatch => {
   dispatch({ type: SIGNUP_START });
   return axios.post(`${baseURL}/auth/register`, creds)
     .then(res => {
-      console.log(res);
       localStorage.setItem('token', res.data.token);
       dispatch({
         type: SIGNUP_SUCCESS,
@@ -78,14 +76,13 @@ export const submitPayload = formData => dispatch => {
   dispatch({ type: SUBMIT_PAYLOAD_START });
   return axios.post(`${testURL}/images/process/`, formData)
     .then(res => {
-      console.log('then',res.data)
       dispatch({
         type: SUBMIT_PAYLOAD_SUCCESS,
         payload: res.data,
       })
     })
     .catch(err => {
-      console.log('catch',err.response);
+      console.log(err.response);
       dispatch({
         type: SUBMIT_PAYLOAD_FAILURE,
         payload: err.response,
@@ -100,7 +97,6 @@ export const submitDeepPayload = formData => dispatch => {
   dispatch({ type: SUBMIT_DEEP_PAYLOAD_START });
   return axiosAuth().post(`${testURL}/images/process-deep/`, formData)
     .then(res => {
-      console.log(res.data)
       dispatch({
         type: SUBMIT_DEEP_PAYLOAD_SUCCESS,
         payload: res.data,
@@ -122,7 +118,6 @@ export const fetchRequest = key => dispatch => {
   dispatch({ type: FETCH_REQUEST_START });
   return axios.get(`${testURL}/images/public/${key}`)
     .then(res => {
-      console.log(res.data);
       dispatch({
         type: FETCH_REQUEST_SUCCESS,
         payload: res.data,

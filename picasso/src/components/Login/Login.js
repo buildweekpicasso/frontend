@@ -25,7 +25,6 @@ export default class Login extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.props.location.pathname === '/login');
     this.props.location.pathname === '/login'
       ? this.props.login(this.state.creds)
           .then(() => {

@@ -16,7 +16,6 @@ export default class Gallery extends React.Component {
           <SocialSharing />
         </Row>
         <Row>
-          {console.log(this.props.fetchingGallery)}
           { !this.props.fetchingGallery
               ? <CardColumns>
                   {this.props.gallery.map((img, i) =>
