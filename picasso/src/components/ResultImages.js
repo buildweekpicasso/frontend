@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row, Fade, Card, CardImg } from 'reactstrap';
+import { Spinner, Col, Row, Fade, Card, CardImg } from 'reactstrap';
 import SocialSharing from './SocialSharing';
 
 export default class ResultImages extends React.Component {
@@ -9,7 +9,11 @@ export default class ResultImages extends React.Component {
 
   render() {
     if(this.props.resultImages.request_key === null) {
-      return <h3 style={{textAlign: 'center'}}>You have no recent results</h3>
+      return (
+        <div style={{ textAlign: 'center', width: '100%', height: '100%' }}>
+          <Spinner size='xl' color='dark' style={{ height: '3em', width: '3em' }} />
+        </div>
+      )
     }
     return (
       <div className='mb-3'>
