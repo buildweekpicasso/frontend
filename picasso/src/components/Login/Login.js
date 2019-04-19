@@ -46,7 +46,7 @@ export default class Login extends React.Component {
     const canSubmit = !!this.state.creds.username && !!this.state.creds.password;
 
     return localStorage.getItem('token')
-      ?(<Redirect to='/private' />)
+      ?(<Redirect to='/' />)
       :(<div className='Login'>
         <Form
           onSubmit={this.handleSubmit}

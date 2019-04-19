@@ -141,7 +141,7 @@ export const fetchGallery = () => dispatch => {
     .then(res => {
       dispatch({
         type: FETCH_GALLERY_SUCCESS,
-        payload: res.data,
+        payload: res.data.reverse(),
       })
     })
     .catch(err => {
