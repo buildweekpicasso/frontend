@@ -21,13 +21,13 @@ export default class Gallery extends React.Component {
                   {this.props.gallery.map((img, i) =>
                     <Fade key={i}>
                       <Card>
-                        <a href={img.output_url} target="_blank" rel="noopener noreferrer">
+                        <Link to={`/result/${img.request_key}`}>
                           <CardImg
                             id={img.request_key}
                             src={img.output_url}
                             alt=''
                           />
-                        </a>
+                        </Link>
                       </Card>
                     </Fade>
                   )}

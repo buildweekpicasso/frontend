@@ -60,6 +60,7 @@ class App extends Component {
                 fetchGallery={this.props.fetchGallery}
                 fetchingGallery={this.props.fetchingGallery}
                 gallery={this.props.gallery}
+                testURL={testURL}
               />
             )}
           />
